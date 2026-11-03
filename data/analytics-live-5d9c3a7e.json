@@ -1,17 +1,18 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-03T20:18:28-03:00",
+  "updatedAt": "2026-11-03T20:40:14-03:00",
   "sources": [
+    "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
     "Auditoria Autorizada @gustavocalheiros.ia (No Gustavo - Apify + Social Blade + Grade 51 posts)",
-    "Social Blade tRPC Live API (victorbianchini.ia, gustavocalheiros.ia, isabianchini.ia, bianchini.hub, lorenzogarcia.ia)",
-    "Meta Graph & Apify Historical Baselines (bianchini-instagram)"
+    "Auditoria Autorizada @bianchini.hub e @isabianchini.ia (No Victor - Apify Live + Social Blade tRPC)",
+    "Social Blade tRPC Live API (victorbianchini.ia, gustavocalheiros.ia, isabianchini.ia, bianchini.hub, lorenzogarcia.ia)"
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29079,
+    "totalFollowers": 29076,
     "totalMediaCount": 434,
-    "estimatedViews30d": 238306,
+    "estimatedViews30d": 71836,
     "meanEngagementRate": 2.77
   },
   "accounts": [
@@ -87,8 +88,8 @@
       "targetAudience": "Empresários R$ 5M-100M/ano + Alunos do Método CRIAR",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 21507,
-      "followersDelta": 7,
+      "followers": 21503,
+      "followersDelta": 3,
       "following": 1356,
       "mediaCount": 255,
       "engagementRate": 1.18,
@@ -97,24 +98,140 @@
       "averageComments": 108.0,
       "healthScore": 83,
       "officialInsights30d": {
-        "source": "Social Blade Live + Histórico Meta Graph (262 posts auditados)",
-        "views30d": 192000,
-        "nonFollowerViewsPct": 64.0,
-        "followerViewsPct": 36.0,
-        "reelsViewsPct": 78.5,
-        "storiesViewsPct": 21.5,
-        "interactions30d": 7590,
+        "source": "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias em 03/11/2026) + Apify Grade",
+        "views30d": 25530,
+        "reach30d": 8237,
+        "nonFollowerViewsPct": 52.1,
+        "followerViewsPct": 47.9,
+        "nonFollowerReachPct": 92.8,
+        "reelsViewsPct": 45.7,
+        "storiesViewsPct": 46.3,
+        "feedCarouselViewsPct": 8.0,
+        "interactions30d": 1561,
+        "reelsInteractionsPct": 64.7,
+        "storiesInteractionsPct": 27.8,
         "nonFollowerInteractionsPct": 58.0,
-        "engagedAccounts30d": 4820,
-        "profileVisits30d": 1840,
+        "engagedAccounts30d": 647,
+        "profileVisits30d": 1976,
+        "netFollows30d": 296,
         "dailyPeaks": [
           {
-            "date": "2026-10-29",
-            "views": 14200
+            "date": "2026-10-28",
+            "views": 5721,
+            "reach": 3402
           },
           {
-            "date": "2026-11-01",
-            "views": 18900
+            "date": "2026-10-29",
+            "views": 1874,
+            "reach": 937
+          },
+          {
+            "date": "2026-10-27",
+            "views": 1680,
+            "reach": 840
+          }
+        ],
+        "recentPosts5": [
+          {
+            "shortCode": "DfQyuR9CiTp",
+            "url": "https://www.instagram.com/reel/DfQyuR9CiTp/",
+            "publishedAt": "2026-11-03T02:19:26+0000",
+            "format": "reel_solo",
+            "isPinned": false,
+            "views": 281,
+            "reach": 189,
+            "likes": 9,
+            "comments": 1,
+            "saves": 0,
+            "shares": 3,
+            "totalInteractions": 15,
+            "captionPreview": "“Você trabalha com IA, seus prompts devem ser super elaborados, né?” Os prompts reais, às"
+          },
+          {
+            "shortCode": "DfM1ugpFHyV",
+            "url": "https://www.instagram.com/reel/DfM1ugpFHyV/",
+            "publishedAt": "2026-11-01T13:28:41+0000",
+            "format": "reel_collab (@gustavocalheiros.ia / @lorenzogarcia.ia)",
+            "isPinned": false,
+            "views": 538,
+            "reach": 330,
+            "likes": 10,
+            "comments": 4,
+            "saves": 3,
+            "shares": 7,
+            "totalInteractions": 24,
+            "captionPreview": "Claude: 1.735 palavras e um \"você está bem?\" 🫠 DeepSeek: tá na mão, padrinho 🤝 Um te dá s"
+          },
+          {
+            "shortCode": "DfGmiMik2rY",
+            "url": "https://www.instagram.com/reel/DfGmiMik2rY/",
+            "publishedAt": "2026-10-30T03:20:50+0000",
+            "format": "reel_collab (@gustavocalheiros.ia / @lorenzogarcia.ia)",
+            "isPinned": false,
+            "views": 722,
+            "reach": 518,
+            "likes": 21,
+            "comments": 14,
+            "saves": 16,
+            "shares": 6,
+            "totalInteractions": 58,
+            "captionPreview": "Site com cara de IA genérica mata o seu ticket nos primeiros 2 segundos. Se você é empres"
+          },
+          {
+            "shortCode": "DfBbeYqk9jp",
+            "url": "https://www.instagram.com/reel/DfBbeYqk9jp/",
+            "publishedAt": "2026-10-28T03:07:58+0000",
+            "format": "reel_collab (@gustavocalheiros.ia / @lorenzogarcia.ia)",
+            "isPinned": false,
+            "views": 5721,
+            "reach": 4754,
+            "likes": 146,
+            "comments": 108,
+            "saves": 214,
+            "shares": 133,
+            "totalInteractions": 605,
+            "captionPreview": "O xtool, ferramenta de código aberto que permite criar, assinar e instalar apps de iPhone "
+          },
+          {
+            "shortCode": "DfA7ZXlAqi5",
+            "url": "https://www.instagram.com/reel/DfA7ZXlAqi5/",
+            "publishedAt": "2026-10-27T22:27:14+0000",
+            "format": "reel_solo",
+            "isPinned": false,
+            "views": 283,
+            "reach": 195,
+            "likes": 8,
+            "comments": 0,
+            "saves": 0,
+            "shares": 0,
+            "totalInteractions": 8,
+            "captionPreview": "Comenta quantas janelas você tem abertas agora. Quero saber se é só aqui ou se já virou ep"
+          }
+        ],
+        "pinnedReels": [
+          {
+            "shortCode": "DWC-STEjbX5",
+            "url": "https://www.instagram.com/p/DWC-STEjbX5/",
+            "publishedAt": "2026-03-19T00:48:32.000Z",
+            "views": 99573,
+            "likes": 4189,
+            "comments": 813
+          },
+          {
+            "shortCode": "DWNdFc5DcZk",
+            "url": "https://www.instagram.com/p/DWNdFc5DcZk/",
+            "publishedAt": "2026-03-23T02:30:01.000Z",
+            "views": 7622,
+            "likes": 506,
+            "comments": 71
+          },
+          {
+            "shortCode": "DSLsq1uDe5X",
+            "url": "https://www.instagram.com/p/DSLsq1uDe5X/",
+            "publishedAt": "2025-12-13T00:02:21.000Z",
+            "views": 6402,
+            "likes": 473,
+            "comments": 198
           }
         ]
       },
@@ -302,7 +419,7 @@
       "averageComments": 3.0,
       "healthScore": 48,
       "officialInsights30d": {
-        "source": "Social Blade Live + Auditoria Institucional (78 posts)",
+        "source": "Auditoria Autorizada No Victor (@bianchini.hub - Apify Live + Social Blade em 03/11/2026; 78 posts)",
         "views30d": 3900,
         "nonFollowerViewsPct": 38.0,
         "followerViewsPct": 62.0,
@@ -320,6 +437,88 @@
           {
             "date": "2026-11-02",
             "views": 340
+          }
+        ],
+        "recentPosts5": [
+          {
+            "shortCode": "DRL8DRjDfmz",
+            "url": "https://www.instagram.com/p/DRL8DRjDfmz/",
+            "publishedAt": "2025-11-18T05:45:32.000Z",
+            "format": "reel_solo",
+            "isPinned": false,
+            "views": 388,
+            "reachEstimate": 341,
+            "likes": 31,
+            "comments": 0,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "🎬 Filme feito 100% com IA para ATA em pouquíssimo tempo. Começamos pelo storybo"
+          },
+          {
+            "shortCode": "DREVaJmDc6N",
+            "url": "https://www.instagram.com/p/DREVaJmDc6N/",
+            "publishedAt": "2025-11-15T06:53:49.000Z",
+            "format": "reel_solo",
+            "isPinned": false,
+            "views": 1949,
+            "reachEstimate": 1715,
+            "likes": 37,
+            "comments": 6,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "Lançamos uma ferramenta exclusiva da nossa comunidade!, um extrator de frames rá"
+          },
+          {
+            "shortCode": "DQ29lJUjQo7",
+            "url": "https://www.instagram.com/p/DQ29lJUjQo7/",
+            "publishedAt": "2025-11-10T02:14:42.000Z",
+            "format": "reel_solo",
+            "isPinned": false,
+            "views": 816,
+            "reachEstimate": 718,
+            "likes": 36,
+            "comments": 2,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "Tá esperando o que? Entra logo no grupo da Bianchini Academy e em breve você va"
+          },
+          {
+            "shortCode": "DQyDT6TDTlq",
+            "url": "https://www.instagram.com/p/DQyDT6TDTlq/",
+            "publishedAt": "2025-11-08T04:29:34.000Z",
+            "format": "reel_solo",
+            "isPinned": false,
+            "views": 1056,
+            "reachEstimate": 929,
+            "likes": 57,
+            "comments": 5,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "O Spaces funciona com um sistema de nodes, onde dá pra conectar imagens, editar,"
+          },
+          {
+            "shortCode": "DQqTj4VDcZ_",
+            "url": "https://www.instagram.com/p/DQqTj4VDcZ_/",
+            "publishedAt": "2025-11-05T04:16:47.000Z",
+            "format": "reel_solo",
+            "isPinned": false,
+            "views": 552,
+            "reachEstimate": 486,
+            "likes": 59,
+            "comments": 31,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "Apresentamos o storyboard + short film, gerado 100% com inteligência artificial."
+          }
+        ],
+        "pinnedReels": [
+          {
+            "shortCode": "DSLsq1uDe5X",
+            "url": "https://www.instagram.com/p/DSLsq1uDe5X/",
+            "publishedAt": "2025-12-13T00:02:21.000Z",
+            "views": 6402,
+            "likes": 473,
+            "comments": 198
           }
         ]
       },
@@ -352,9 +551,9 @@
       "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe",
       "website": "https://chat.whatsapp.com/Di3V0wN8Km73ahpn5J9rfU?mode=ems_copy_t",
       "fetchStatus": "live_socialblade",
-      "followers": 5267,
-      "followersDelta": -5,
-      "following": 1967,
+      "followers": 5268,
+      "followersDelta": -4,
+      "following": 1968,
       "mediaCount": 45,
       "engagementRate": 0.29,
       "engagementRateDelta": -0.21,
@@ -362,7 +561,7 @@
       "averageComments": 1.25,
       "healthScore": 61,
       "officialInsights30d": {
-        "source": "Social Blade Live (03/11/2026) vs Baseline Apify Anterior",
+        "source": "Auditoria Autorizada No Victor (@isabianchini.ia - Apify Live + Social Blade em 03/11/2026; extra_pending no /igbot/health)",
         "views30d": 26400,
         "nonFollowerViewsPct": 49.0,
         "followerViewsPct": 51.0,
@@ -378,8 +577,90 @@
             "views": 2150
           },
           {
-            "date": "2026-11-01",
-            "views": 1890
+            "date": "2026-11-02",
+            "views": 686
+          }
+        ],
+        "recentPosts5": [
+          {
+            "shortCode": "DfP1jALR4_u",
+            "url": "https://www.instagram.com/p/DfP1jALR4_u/",
+            "publishedAt": "2026-11-02T17:25:44.000Z",
+            "format": "reel_solo",
+            "isPinned": false,
+            "views": 686,
+            "reachEstimate": 604,
+            "likes": 4,
+            "comments": 16,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "Reel executivo de rotina e posicionamento IA (02/11/2026)"
+          },
+          {
+            "shortCode": "De2kElHxkwz",
+            "url": "https://www.instagram.com/p/De2kElHxkwz/",
+            "publishedAt": "2026-10-23T21:50:45.000Z",
+            "format": "post_image",
+            "isPinned": false,
+            "views": null,
+            "reachEstimate": null,
+            "likes": 13,
+            "comments": 0,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "Vista de onde mora o amor.♡"
+          },
+          {
+            "shortCode": "DeQq2bMxTjk",
+            "url": "https://www.instagram.com/p/DeQq2bMxTjk/",
+            "publishedAt": "2026-10-09T04:38:51.000Z",
+            "format": "post_image",
+            "isPinned": false,
+            "views": null,
+            "reachEstimate": null,
+            "likes": 11,
+            "comments": 0,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "Hohohohoho..."
+          },
+          {
+            "shortCode": "DcL0ai3xEqw",
+            "url": "https://www.instagram.com/p/DcL0ai3xEqw/",
+            "publishedAt": "2026-08-18T14:24:03.000Z",
+            "format": "reel_solo",
+            "isPinned": false,
+            "views": 4322,
+            "reachEstimate": 3803,
+            "likes": 42,
+            "comments": 5,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "♡"
+          },
+          {
+            "shortCode": "DW0N9clDVtH",
+            "url": "https://www.instagram.com/p/DW0N9clDVtH/",
+            "publishedAt": "2026-04-07T03:48:30.000Z",
+            "format": "post_image",
+            "isPinned": false,
+            "views": null,
+            "reachEstimate": null,
+            "likes": 57,
+            "comments": 18,
+            "saves": null,
+            "shares": null,
+            "captionPreview": "Direto de Miami, Rabino Shmuel Haber, responsável pelos filmes judaicos produzid"
+          }
+        ],
+        "pinnedPosts": [
+          {
+            "shortCode": "DYq5GJPNnix",
+            "url": "https://www.instagram.com/p/DYq5GJPNnix/",
+            "publishedAt": "2026-05-23T05:55:13.000Z",
+            "views": null,
+            "likes": 55,
+            "comments": 9
           }
         ]
       },

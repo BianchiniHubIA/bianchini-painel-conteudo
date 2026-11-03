@@ -1,0 +1,36 @@
+name: Sync 5-Account Instagram Analytics Live
+
+on:
+  schedule:
+    - cron: "0 */4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-analytics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Fetch live Social Blade metrics for all 5 accounts
+        run: python -X utf8 scripts/sync_socialblade_live.py
+
+      - name: Commit updated live feed if metrics changed
+        run: |
+          git config user.name "bianchini-analytics-bot"
+          git config user.email "noreply@bianchinihub.com"
+          if git diff --quiet -- data/analytics-live-5d9c3a7e.json; then
+            echo "No metric changes detected."
+          else
+            git add data/analytics-live-5d9c3a7e.json
+            git commit -m "chore(analytics): update live 5-account metrics snapshot"
+            git push
+          fi

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Bianchini Analytics Realtime · Radar Multi-Conta (5 Perfis)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <style>
+    
+    :root {
+      --bg: #0c0b0a;
+      --bg-elev: #141311;
+      --surface: #191715;
+      --surface-hover: #211e1b;
+      --line: rgba(242, 237, 228, 0.09);
+      --line-strong: rgba(207, 176, 124, 0.38);
+      --ink: #f2ede4;
+      --ink-soft: #b9b2a6;
+      --ink-faint: #7e786d;
+      --gold: #cfb07c;
+      --gold-soft: rgba(207, 176, 124, 0.13);
+      --sage: #7ec49b;
+      --sage-soft: rgba(126, 196, 155, 0.13);
+      --clay: #e07d67;
+      --clay-soft: rgba(224, 125, 103, 0.13);
+      --mist: #89b4e8;
+      --mist-soft: rgba(137, 180, 232, 0.13);
+      --mauve: #bda1e6;
+      --mauve-soft: rgba(189, 161, 230, 0.13);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(920px 480px at 88% -8%, rgba(207, 176, 124, 0.14), transparent 62%),
+        radial-gradient(820px 520px at 8% 105%, rgba(137, 180, 232, 0.09), transparent 60%);
+      background-attachment: fixed;
+      color: var(--ink);
+      line-height: 1.55;
+      min-height: 100vh;
+      padding: 24px 16px 72px;
+      font-size: 14px;
+    }
+    h1, h2, h3, h4, .font-title { font-family: 'Manrope', sans-serif; letter-spacing: -0.022em; }
+    .container { max-width: 1280px; margin: 0 auto; }
+    .hero {
+      background: linear-gradient(180deg, rgba(25, 23, 21, 0.96), rgba(20, 19, 17, 0.96));
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 28px 64px rgba(0, 0, 0, 0.48);
+      margin-bottom: 22px;
+    }
+    .hero-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 20px; }
+    .brand-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 13px; border-radius: 999px;
+      border: 1px solid var(--line-strong); background: var(--gold-soft);
+      color: var(--gold); font-size: 12px; font-weight: 600; margin-bottom: 12px;
+    }
+    .hero h1 { font-size: clamp(24px, 3.1vw, 35px); line-height: 1.14; margin-bottom: 8px; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { color: var(--ink-soft); font-size: 14.5px; max-width: 720px; }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; min-width: min(100%, 460px); }
+    .kpi-box { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 14px; padding: 13px 15px; }
+    .kpi-lbl { font-size: 12px; color: var(--ink-faint); margin-bottom: 3px; }
+    .kpi-val { font-family: 'Manrope', sans-serif; font-size: 22px; font-weight: 700; color: var(--gold); font-variant-numeric: tabular-nums; }
+    .kpi-sub { font-size: 12px; color: var(--ink-soft); margin-top: 2px; }
+    .nav-bar {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+      margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--line);
+    }
+    .tab-btn {
+      appearance: none; border: 1px solid var(--line); background: var(--bg-elev);
+      color: var(--ink-soft); font-family: inherit; font-size: 13px; font-weight: 600;
+      padding: 9px 16px; border-radius: 11px; cursor: pointer; transition: all 0.15s ease;
+    }
+    .tab-btn:hover { color: var(--ink); border-color: var(--line-strong); }
+    .tab-btn.active { background: var(--gold); color: #12100e; border-color: var(--gold); }
+    .btn {
+      appearance: none; border: 1px solid var(--line); background: var(--surface);
+      color: var(--ink); font-family: inherit; font-size: 13px; font-weight: 600;
+      padding: 9px 14px; border-radius: 10px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
+      transition: all 0.15s ease;
+    }
+    .btn:hover { border-color: var(--line-strong); background: var(--surface-hover); }
+    .btn-gold { background: var(--gold); color: #12100e; border-color: var(--gold); }
+    .btn-gold:hover { background: #dfc392; color: #12100e; }
+    .btn-sm { padding: 6px 11px; font-size: 12px; border-radius: 8px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 18px; padding: 22px; margin-bottom: 18px;
+    }
+    .card-gold { border-color: var(--line-strong); }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+    .filters-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 12px; }
+    .field label { display: block; font-size: 12px; color: var(--ink-soft); margin-bottom: 5px; font-weight: 500; }
+    .input, select, textarea {
+      width: 100%; background: var(--bg-elev); color: var(--ink);
+      border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px;
+      font-size: 13.5px; font-family: inherit; outline: none;
+    }
+    .input:focus, select:focus, textarea:focus { border-color: var(--gold); }
+    .chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--bg-elev); color: var(--ink-soft);
+    }
+    .chip-gold { background: var(--gold-soft); border-color: var(--line-strong); color: var(--gold); }
+    .chip-sage { background: var(--sage-soft); border-color: rgba(126,196,155,0.35); color: var(--sage); }
+    .chip-clay { background: var(--clay-soft); border-color: rgba(224,125,103,0.35); color: var(--clay); }
+    .chip-mist { background: var(--mist-soft); border-color: rgba(137,180,232,0.35); color: var(--mist); }
+    .chip-mauve { background: var(--mauve-soft); border-color: rgba(189,161,230,0.35); color: var(--mauve); }
+    .sub-tabs { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin: 12px 0; }
+    .sub-tab {
+      appearance: none; border: 1px solid var(--line); background: var(--bg-elev);
+      color: var(--ink-soft); font-size: 12px; font-weight: 600; padding: 6px 11px;
+      border-radius: 8px; cursor: pointer;
+    }
+    .sub-tab.active { background: var(--gold-soft); border-color: var(--gold); color: var(--gold); }
+    .guide-box {
+      background: var(--bg-elev); border: 1px solid var(--line); border-radius: 12px;
+      padding: 13px 14px; font-size: 13px; color: var(--ink-soft); white-space: pre-line; line-height: 1.6;
+    }
+    .hook-box {
+      background: var(--bg-elev); border: 1px solid var(--line); border-left: 3px solid var(--gold);
+      border-radius: 10px; padding: 11px 13px; margin: 10px 0;
+    }
+    .modal-backdrop {
+      position: fixed; inset: 0; background: rgba(6, 5, 4, 0.82); backdrop-filter: blur(6px);
+      display: flex; align-items: center; justify-content: center; padding: 18px; z-index: 60;
+    }
+    .modal-panel {
+      background: var(--surface); border: 1px solid var(--line-strong); border-radius: 20px;
+      width: min(860px, 100%); max-height: 90vh; overflow-y: auto; padding: 26px;
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.7);
+    }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--sage); box-shadow: 0 0 10px var(--sage); display: inline-block; }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; }
+    th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--line); font-size: 13px; vertical-align: top; }
+    th { color: var(--gold); font-weight: 600; font-size: 12px; }
+
+    .diag-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 14px; margin-top: 14px; }
+    .diag-box { background: var(--bg-elev); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+    .diag-high { border-top: 3px solid var(--sage); }
+    .diag-low { border-top: 3px solid var(--clay); }
+    .diag-tip { border-top: 3px solid var(--gold); }
+    .diag-list { padding-left: 18px; color: var(--ink-soft); font-size: 13px; display: grid; gap: 8px; margin-top: 8px; }
+    .acc-selector {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 12px; margin-bottom: 18px;
+    }
+    .acc-tile {
+      background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+      padding: 16px; cursor: pointer; transition: all 0.15s ease; text-align: left; color: var(--ink);
+    }
+    .acc-tile:hover { border-color: var(--line-strong); background: var(--surface-hover); }
+    .acc-tile.selected { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 16px 36px rgba(0,0,0,0.4); }
+    .bar-track { width: 100%; height: 9px; background: var(--bg-elev); border-radius: 999px; overflow: hidden; margin-top: 6px; }
+    .bar-fill { height: 100%; border-radius: 999px; transition: width 0.35s ease; }
+    .delta-up { color: var(--sage); font-weight: 700; font-size: 12px; }
+    .delta-down { color: var(--clay); font-weight: 700; font-size: 12px; }
+    .delta-flat { color: var(--ink-faint); font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div id="app" class="container">
+    <header class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="brand-pill">
+            <span class="status-dot"></span>
+            <span>TEMPO REAL + MEMÓRIA PERPÉTUA · 5 CONTAS INSTAGRAM</span>
+          </div>
+          <h1>Radar de Analytics em <span>Tempo Real</span></h1>
+          <p class="hero-sub">
+            Monitoramento contínuo de <strong>@lorenzogarcia.ia</strong> (Insights oficiais 30d + Social Blade), <strong>@victorbianchini.ia</strong>, <strong>@gustavocalheiros.ia</strong>, <strong>@bianchini.hub</strong> e <strong>@isabianchini.ia</strong>. Todas as coletas, snapshots históricos, metas e checklists ficam <strong>salvos permanentemente</strong> no banco local deste dispositivo (<code>IndexedDB</code> + <code>localStorage</code>).
+          </p>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-box">
+            <div class="kpi-lbl">Audiência Somada</div>
+            <div class="kpi-val">{ totalFollowers.toLocaleString('pt-BR') }</div>
+            <div class="kpi-sub">5 contas monitoradas</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Alcance / Views (30d)</div>
+            <div class="kpi-val">{ totalViews30d.toLocaleString('pt-BR') }</div>
+            <div class="kpi-sub">79,8% não-seg no Lorenzo</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">ER Médio Grupo</div>
+            <div class="kpi-val">{ meanEr }%</div>
+            <div class="kpi-sub">Líder prop.: @lorenzogarcia.ia</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Snapshots Salvos</div>
+            <div class="kpi-val">{ historyLog.length }</div>
+            <div class="kpi-sub">{ syncStatusLabel }</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="nav-bar">
+        <button class="tab-btn" :class="{ active: viewTab === 'overview' }" @click="viewTab = 'overview'">
+          1. Visão Geral, Altas, Baixas &amp; Dicas (5 Contas)
+        </button>
+        <button class="tab-btn" :class="{ active: viewTab === 'compare' }" @click="viewTab = 'compare'">
+          2. Matriz Comparativa &amp; Gráficos
+        </button>
+        <button class="tab-btn" :class="{ active: viewTab === 'history' }" @click="viewTab = 'history'">
+          3. Histórico Salvo &amp; Atualizar Insights ({ historyLog.length })
+        </button>
+
+        <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
+          <select v-model="pollIntervalSec" style="width:auto;padding:8px 10px;font-size:12px">
+            <option :value="30">Auto-Refresh: 30s</option>
+            <option :value="60">Auto-Refresh: 60s</option>
+            <option :value="300">Auto-Refresh: 5 min</option>
+            <option :value="0">Auto-Refresh: Pausado</option>
+          </select>
+          <button class="btn btn-gold" :disabled="isSyncing" @click="syncLiveNow(true)">
+            { isSyncing ? 'Sincronizando 5 contas...' : 'Sincronizar Agora (Ao Vivo)' }
+          </button>
+          <a class="btn" :href="backupHref" download="bianchini-analytics-historico.json">Backup JSON</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- SELETOR RAPIDO DAS 5 CONTAS -->
+    <div class="acc-selector">
+      <button
+        v-for="acc in accounts"
+        :key="acc.handle"
+        type="button"
+        class="acc-tile"
+        :class="{ selected: selectedHandle === acc.handle }"
+        @click="selectedHandle = acc.handle; viewTab = 'overview'"
+      >
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:6px">
+          <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;color:var(--gold)">{ acc.atHandle }</span>
+          <span class="chip" :class="healthChipClass(acc.healthScore)">Saúde { acc.healthScore }/100</span>
+        </div>
+        <div style="font-size:18px;font-weight:800;font-variant-numeric:tabular-nums">
+          { acc.followers.toLocaleString('pt-BR') } <span style="font-size:12px;font-weight:500;color:var(--ink-faint)">seg</span>
+          <span v-if="acc.followersDelta > 0" class="delta-up"> +{ acc.followersDelta }</span>
+          <span v-else-if="acc.followersDelta < 0" class="delta-down"> { acc.followersDelta }</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);margin-top:6px">
+          <span>ER: <strong>{ acc.engagementRate }%</strong></span>
+          <span>Likes: <strong>{ acc.averageLikes }</strong></span>
+          <span>Com.: <strong>{ acc.averageComments }</strong></span>
+        </div>
+      </button>
+    </div>
+
+    <!-- ABA 1: RAIO-X EM TEMPO REAL DA CONTA SELECIONADA + TODAS AS 5 -->
+    <section v-if="viewTab === 'overview' && currentAccount">
+      <div class="card card-gold">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:16px">
+          <div>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <h2 style="font-size:24px">{ currentAccount.ownerName } · <span style="color:var(--gold)">{ currentAccount.atHandle }</span></h2>
+              <a :href="'https://www.instagram.com/' + currentAccount.handle + '/'" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Abrir Instagram ↗</a>
+              <a :href="'https://socialblade.com/instagram/user/' + currentAccount.handle" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Fonte Social Blade ↗</a>
+            </div>
+            <p style="color:var(--ink-soft);margin-top:4px">{ currentAccount.role } · <strong>Público-alvo:</strong> { currentAccount.targetAudience }</p>
+            <p style="color:var(--ink-faint);font-size:12px;margin-top:2px">Fonte verificada: { currentAccount.officialInsights30d.source } | Última leitura: { lastSyncTimeLabel }</p>
+          </div>
+          <button class="btn btn-sm" @click="openManualUpdate(currentAccount)">Registrar Insights / Novo Post</button>
+        </div>
+
+        <div class="grid-5">
+          <div class="kpi-box">
+            <div class="kpi-lbl">Seguidores Atuais</div>
+            <div class="kpi-val">{ currentAccount.followers.toLocaleString('pt-BR') }</div>
+            <div class="kpi-sub">
+              <span v-if="currentAccount.followersDelta > 0" class="delta-up">▲ +{ currentAccount.followersDelta } vs base</span>
+              <span v-else-if="currentAccount.followersDelta < 0" class="delta-down">▼ { currentAccount.followersDelta } (alerta perda)</span>
+              <span v-else class="delta-flat">Estável no período</span>
+            </div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Taxa de Engajamento (ER)</div>
+            <div class="kpi-val">{ currentAccount.engagementRate }%</div>
+            <div class="kpi-sub">
+              <span v-if="currentAccount.engagementRateDelta > 0" class="delta-up">▲ +{ currentAccount.engagementRateDelta } pp</span>
+              <span v-else-if="currentAccount.engagementRateDelta < 0" class="delta-down">▼ { currentAccount.engagementRateDelta } pp</span>
+              <span v-else class="delta-flat">Benchmark B2B: 1,2%+</span>
+            </div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Média Likes / Comentários</div>
+            <div class="kpi-val">{ currentAccount.averageLikes } / { currentAccount.averageComments }</div>
+            <div class="kpi-sub">{ currentAccount.mediaCount } posts publicados</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Visualizações (30 dias)</div>
+            <div class="kpi-val">{ currentAccount.officialInsights30d.views30d.toLocaleString('pt-BR') }</div>
+            <div class="kpi-sub">{ currentAccount.officialInsights30d.nonFollowerViewsPct }% de não seguidores</div>
+          </div>
+          <div class="kpi-box">
+            <div class="kpi-lbl">Interações &amp; Visitas (30d)</div>
+            <div class="kpi-val">{ currentAccount.officialInsights30d.interactions30d.toLocaleString('pt-BR') }</div>
+            <div class="kpi-sub">{ currentAccount.officialInsights30d.profileVisits30d } visitas ao perfil</div>
+          </div>
+        </div>
+
+        <!-- BARRAS DE DISTRIBUICAO DE ALCANCE -->
+        <div class="grid-2" style="margin-top:16px">
+          <div class="kpi-box">
+            <div style="display:flex;justify-content:space-between;font-size:12.5px">
+              <span>Descoberta Fora da Base (Não Seguidores)</span>
+              <strong style="color:var(--sage)">{ currentAccount.officialInsights30d.nonFollowerViewsPct }% Não Seguidores · { currentAccount.officialInsights30d.followerViewsPct }% Seguidores</strong>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" :style="{ width: currentAccount.officialInsights30d.nonFollowerViewsPct + '%', background: 'var(--sage)' }"></div>
+            </div>
+          </div>
+          <div class="kpi-box">
+            <div style="display:flex;justify-content:space-between;font-size:12.5px">
+              <span>Tração por Formato (Reels vs Stories/Outros)</span>
+              <strong style="color:var(--gold)">{ currentAccount.officialInsights30d.reelsViewsPct }% Reels · { currentAccount.officialInsights30d.storiesViewsPct }% Stories</strong>
+            </div>
+            <div class="bar-track">
+              <div class="bar-fill" :style="{ width: currentAccount.officialInsights30d.reelsViewsPct + '%', background: 'var(--gold)' }"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ALTAS, BAIXAS E DICAS ACIONAVEIS -->
+        <div class="diag-grid">
+          <div class="diag-box diag-high">
+            <div class="chip chip-sage">ALTAS · O QUE ESTÁ TRACIONANDO</div>
+            <ul class="diag-list">
+              <li v-for="h in currentAccount.highs" :key="h">{ h }</li>
+            </ul>
+          </div>
+
+          <div class="diag-box diag-low">
+            <div class="chip chip-clay">BAIXAS &amp; ALERTAS · ONDE ESTÁ VAZANDO</div>
+            <ul class="diag-list">
+              <li v-for="l in currentAccount.lows" :key="l">{ l }</li>
+            </ul>
+          </div>
+
+          <div class="diag-box diag-tip">
+            <div class="chip chip-gold">DICAS DE ALCANCE HIGH-TICKET &amp; ENGAJAMENTO</div>
+            <div style="display:grid;gap:8px;margin-top:10px">
+              <label
+                v-for="(tip, idx) in currentAccount.tips"
+                :key="tip"
+                style="display:flex;align-items:flex-start;gap:9px;font-size:13px;color:var(--ink-soft);cursor:pointer"
+              >
+                <input
+                  type="checkbox"
+                  :checked="isTipDone(currentAccount.handle, idx)"
+                  @change="toggleTip(currentAccount.handle, idx)"
+                  style="width:16px;height:16px;margin-top:2px;accent-color:var(--gold);flex-shrink:0"
+                />
+                <span :style="{ textDecoration: isTipDone(currentAccount.handle, idx) ? 'line-through' : 'none', opacity: isTipDone(currentAccount.handle, idx) ? 0.65 : 1 }">
+                  { tip }
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESUMO RAPIDO DE TODAS AS 5 CONTAS LADO A LADO -->
+      <div class="card">
+        <h3 style="font-size:19px;margin-bottom:12px">Panorama Simultâneo das 5 Contas (Altas Críticas vs. Baixas Imediatas)</h3>
+        <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Conta</th>
+                <th>Seguidores</th>
+                <th>ER%</th>
+                <th>Média Likes / Com.</th>
+                <th>Principal Alta Atual</th>
+                <th>Principal Baixa a Corrigir</th>
+                <th>Ação #1 da Semana</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="a in accounts" :key="a.handle">
+                <td>
+                  <strong style="color:var(--gold);cursor:pointer" @click="selectedHandle = a.handle">{ a.atHandle }</strong>
+                  <div style="font-size:12px;color:var(--ink-faint)">{ a.ownerName }</div>
+                </td>
+                <td>
+                  <strong>{ a.followers.toLocaleString('pt-BR') }</strong>
+                  <div v-if="a.followersDelta !== 0" :class="a.followersDelta > 0 ? 'delta-up' : 'delta-down'">
+                    { a.followersDelta > 0 ? '+' + a.followersDelta : a.followersDelta }
+                  </div>
+                </td>
+                <td><strong>{ a.engagementRate }%</strong></td>
+                <td>{ a.averageLikes } likes · <strong>{ a.averageComments } com.</strong></td>
+                <td style="color:var(--sage)">{ a.highs[0] }</td>
+                <td style="color:var(--clay)">{ a.lows[0] }</td>
+                <td>{ a.tips[0] }</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 2: MATRIZ COMPARATIVA E GRAFICOS SVG REATIVOS -->
+    <section v-if="viewTab === 'compare'">
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="font-size:18px;margin-bottom:14px">Taxa de Engajamento Proporcional (ER% Social Blade)</h3>
+          <div style="display:grid;gap:12px">
+            <div v-for="a in accountsSortedByEr" :key="a.handle">
+              <div style="display:flex;justify-content:space-between;font-size:13px">
+                <span><strong>{ a.atHandle }</strong> ({ a.followers.toLocaleString('pt-BR') } seg)</span>
+                <strong style="color:var(--gold)">{ a.engagementRate }%</strong>
+              </div>
+              <div class="bar-track" style="height:12px">
+                <div class="bar-fill" :style="{ width: Math.min(100, a.engagementRate * 8.5) + '%', background: a.engagementRate >= 1.1 ? 'var(--sage)' : 'var(--clay)' }"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-size:18px;margin-bottom:14px">Índice de Saúde &amp; Tração B2B (0 a 100)</h3>
+          <div style="display:grid;gap:12px">
+            <div v-for="a in accounts" :key="a.handle">
+              <div style="display:flex;justify-content:space-between;font-size:13px">
+                <span><strong>{ a.atHandle }</strong> · { a.mediaCount } posts</span>
+                <strong>{ a.healthScore }/100</strong>
+              </div>
+              <div class="bar-track" style="height:12px">
+                <div class="bar-fill" :style="{ width: a.healthScore + '%', background: a.healthScore >= 70 ? 'var(--gold)' : (a.healthScore >= 55 ? 'var(--mist)' : 'var(--clay)') }"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card card-gold">
+        <h3 style="font-size:19px;margin-bottom:10px">Guia Mestre de Alavancagem do Ecossistema (Empresários High-Ticket + Alunos Academy)</h3>
+        <div class="grid-3">
+          <div class="guide-box">
+            <strong style="color:var(--gold)">1. Fim do Vídeo Clonado (Originality Score)</strong>
+            Subir o mesmo MP4 cru derrubou posts secundários para 6 a 9 likes. Use 1 Collab oficial por semana partindo da @bianchini.hub (A Mesa dos Sócios) e vídeos nativos próprios em cada perfil.
+          </div>
+          <div class="guide-box">
+            <strong style="color:var(--sage)">2. Multiplicador de Comentários (108 médios no Victor)</strong>
+            O salto do Victor de 10,5 para 108 comentários médios prova o modelo: mostre o sistema escuro funcionando + encerre com 1 palavra única para envio automático no Direct.
+          </div>
+          <div class="guide-box">
+            <strong style="color:var(--mist)">3. Conversão dos 79,8% Não Seguidores</strong>
+            No @lorenzogarcia.ia, quase 80% das views já vêm de fora da base via Reels. Com os 3 Fixados estratégicos no topo das 5 contas, a taxa de visita -&gt; seguidor dobra imediatamente.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 3: HISTORICO PERPETUO SALVO NO DISPOSITIVO -->
+    <section v-if="viewTab === 'history'">
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+          <div>
+            <h3 style="font-size:19px">Linha do Tempo de Snapshots Salvos Automaticamente</h3>
+            <p style="font-size:13px;color:var(--ink-soft)">
+              Cada sincronização ou atualização manual gera um registro permanente em <code>IndexedDB</code> + <code>localStorage</code> para acompanhar a evolução real das 5 contas.
+            </p>
+          </div>
+          <label class="btn btn-sm" style="cursor:pointer">
+            Importar Backup JSON
+            <input type="file" accept=".json" @change="importBackup" style="display:none" />
+          </label>
+        </div>
+
+        <div style="overflow-x:auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Data / Hora</th>
+                <th>Origem</th>
+                <th>@lorenzogarcia.ia</th>
+                <th>@victorbianchini.ia</th>
+                <th>@gustavocalheiros.ia</th>
+                <th>@bianchini.hub</th>
+                <th>@isabianchini.ia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="snap in historyLog" :key="snap.id">
+                <td><strong>{ formatDateTime(snap.ts) }</strong></td>
+                <td><span class="chip">{ snap.origin }</span></td>
+                <td>{ snap.summary['lorenzogarcia.ia'] || '-' }</td>
+                <td>{ snap.summary['victorbianchini.ia'] || '-' }</td>
+                <td>{ snap.summary['gustavocalheiros.ia'] || '-' }</td>
+                <td>{ snap.summary['bianchini.hub'] || '-' }</td>
+                <td>{ snap.summary['isabianchini.ia'] || '-' }</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- MODAL PARA REGISTRAR INSIGHTS PRIVADOS OU NOVO POST -->
+    <div v-if="editingAccount" class="modal-backdrop" @click.self="editingAccount = null">
+      <div class="modal-panel" style="max-width:620px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <h3 style="font-size:19px">Atualizar Métricas · { editingAccount.atHandle }</h3>
+          <button class="btn btn-sm" @click="editingAccount = null">Fechar</button>
+        </div>
+        <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">
+          Use para salvar números frescos do painel interno do Instagram Insights (Views 30d, % Não Seguidores, Visitas ao Perfil) sempre que abrir no celular. Tudo fica salvo permanentemente.
+        </p>
+        <div class="filters-row">
+          <div class="field">
+            <label>Seguidores</label>
+            <input type="number" class="input" v-model.number="editingAccount.followers" />
+          </div>
+          <div class="field">
+            <label>Publicações (Posts)</label>
+            <input type="number" class="input" v-model.number="editingAccount.mediaCount" />
+          </div>
+          <div class="field">
+            <label>ER (%)</label>
+            <input type="number" step="0.01" class="input" v-model.number="editingAccount.engagementRate" />
+          </div>
+          <div class="field">
+            <label>Média de Likes</label>
+            <input type="number" step="0.1" class="input" v-model.number="editingAccount.averageLikes" />
+          </div>
+          <div class="field">
+            <label>Média de Comentários</label>
+            <input type="number" step="0.1" class="input" v-model.number="editingAccount.averageComments" />
+          </div>
+          <div class="field">
+            <label>Visualizações 30d (Insights)</label>
+            <input type="number" class="input" v-model.number="editingAccount.officialInsights30d.views30d" />
+          </div>
+          <div class="field">
+            <label>% Não Seguidores (Alcance)</label>
+            <input type="number" step="0.1" class="input" v-model.number="editingAccount.officialInsights30d.nonFollowerViewsPct" />
+          </div>
+          <div class="field">
+            <label>Visitas ao Perfil (30d)</label>
+            <input type="number" class="input" v-model.number="editingAccount.officialInsights30d.profileVisits30d" />
+          </div>
+        </div>
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px">
+          <button class="btn" @click="editingAccount = null">Cancelar</button>
+          <button class="btn btn-gold" @click="saveManualUpdate">Salvar Snapshot Permanente</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const INITIAL_ANALYTICS = {"schemaVersion": 1, "updatedAt": "2026-11-03T17:35:08-03:00", "sources": ["Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)", "Social Blade tRPC Live API (victorbianchini.ia, gustavocalheiros.ia, isabianchini.ia, bianchini.hub, lorenzogarcia.ia)", "Meta Graph & Apify Historical Baselines (bianchini-instagram)"], "ecosystemTotals": {"accountsCount": 5, "totalFollowers": 29079, "totalMediaCount": 434, "estimatedViews30d": 238306, "meanEngagementRate": 2.77}, "accounts": [{"key": "garcia", "handle": "lorenzogarcia.ia", "atHandle": "@lorenzogarcia.ia", "displayName": "Lorenzo Garcia | Soluções digitais com IA", "ownerName": "Lorenzo Garcia", "role": "Sócio Engenheiro Construtor (Sistemas, Agentes, MCPs & Segurança)", "targetAudience": "CTOs, Sócios Operacionais (Contratos Hub) + Devs/Builders (Mentoria)", "website": "https://bianchinihub.com", "fetchStatus": "live_socialblade", "followers": 57, "followersDelta": 0, "following": 122, "mediaCount": 5, "engagementRate": 10.53, "engagementRateDelta": 0.0, "averageLikes": 6.0, "averageComments": 0.0, "healthScore": 75, "officialInsights30d": {"source": "Instagram Insights Oficial (@lorenzogarcia.ia - 30 dias em 03/11/2026)", "views30d": 1206, "nonFollowerViewsPct": 79.8, "followerViewsPct": 20.2, "reelsViewsPct": 84.1, "storiesViewsPct": 15.9, "interactions30d": 103, "nonFollowerInteractionsPct": 65.0, "engagedAccounts30d": 65, "profileVisits30d": 25, "dailyPeaks": [{"date": "2026-10-31", "views": 59}, {"date": "2026-11-02", "views": 42}]}, "baselineComparison": {"previousFollowers": 57, "previousEr": 10.53, "medianViewsEstimate": 1200}, "highs": ["Maior Engagement Rate proporcional do ecossistema no Social Blade (10,53% ER) na largada da conta.", "Motor de descoberta validado nos Insights oficiais: 79,8% das 1.206 visualizações e 65% das interações vieram de NÃO seguidores.", "Reels puxam 84,1% das visualizações e 88,3% das interações, confirmando fit imediato com formatos técnicos curtos."], "lows": ["Baixíssimo volume próprio acumulado: apenas 5 posts totais (1 Reel solo DfRCuDjlaqz com 6 likes/0 comments em 15h + 4 Collabs).", "Média de 0 comentários nos posts solo por ausência de chamada única de 1 palavra (ex: Comenta STACK ou PIPELINE).", "Apenas 25 visitas ao perfil em 30 dias: falta o Vídeo Fixado #1 (Manifesto 4 meses vs 7 dias) para converter visitantes frios em seguidores."], "tips": ["Fixar hoje o Pin #1 Manifesto (Ideia #21) e gravar o Reel de 21s dos 2 monitores no escuro com Claude Code + MCPs (Ideia #16).", "Encerrar 100% dos vídeos com troca prática de 1 palavra no comentário (STACK, MCP, GRAFO, BLINDAGEM) para destravar o algoritmo de Direct.", "Publicar simultaneamente no Instagram Reels e no TikTok (mesmo arquivo limpo sem marca d'água) na Série Dia 1 a 10 (Ideia #19)."]}, {"key": "victor", "handle": "victorbianchini.ia", "atHandle": "@victorbianchini.ia", "displayName": "Victor Bianchini", "ownerName": "Victor Bianchini", "role": "Fundador & Estrategista C-Level (50% Contratos Hub / 50% Academy)", "targetAudience": "Empresários R$ 5M-100M/ano + Alunos do Método CRIAR", "website": "http://www.bianchinihub.com", "fetchStatus": "live_socialblade", "followers": 21507, "followersDelta": 7, "following": 1356, "mediaCount": 255, "engagementRate": 1.18, "engagementRateDelta": 0.32, "averageLikes": 145.0, "averageComments": 108.0, "healthScore": 83, "officialInsights30d": {"source": "Social Blade Live + Histórico Meta Graph (262 posts auditados)", "views30d": 192000, "nonFollowerViewsPct": 64.0, "followerViewsPct": 36.0, "reelsViewsPct": 78.5, "storiesViewsPct": 21.5, "interactions30d": 7590, "nonFollowerInteractionsPct": 58.0, "engagedAccounts30d": 4820, "profileVisits30d": 1840, "dailyPeaks": [{"date": "2026-10-29", "views": 14200}, {"date": "2026-11-01", "views": 18900}]}, "baselineComparison": {"previousFollowers": 21500, "previousEr": 0.86, "medianViewsEstimate": 6400}, "highs": ["Salto expressivo de engajamento recente no Social Blade: média subiu para 145 likes e impressionantes 108 comentários por post (ER 1,18% com 21.507 seguidores).", "Relação Comentários/Likes de 74,5% nos posts recentes graças ao gatilho de palavra-chave única e temas de sistemas próprios.", "Histórico auditado em 262 posts comprova que Carrosséis 4:5 entregam +53,8% na mediana sobre vídeos comuns e pautas Business batem +65%."], "lows": ["Forte dispersão entre topo e fundo: posts institucionais ou com legenda vaga ('Link na bio', DegCZ-6NJP0 / De1jxwukVrw) caem para 9 a 25 likes (-83% abaixo da média).", "Vídeos antigos focados apenas em VFX/animação atraem curiosos iniciantes que inflam views mas não compram contratos de R$ 20k a R$ 200k+.", "Baixa frequência recente de Carrosséis executivos 4:5 (apenas 1 nos últimos 50 posts), deixando salvamentos de sócios na mesa."], "tips": ["Aplicar rigorosamente a Regra 70/30: 70% da fala no bolso do empresário (TCO de SaaS, folha administrativa evitada) + 30% tela real do agente rodando.", "Publicar toda terça-feira 1 Carrossel 4:5 de arquitetura ou conta financeira (Ideia #06 e #13) para multiplicar salvamentos e envios entre sócios.", "Banir legendas 'Link na bio': manter 100% dos Reels com entrega de calculadora/diagnóstico via 1 palavra no comentário."]}, {"key": "gustavo", "handle": "gustavocalheiros.ia", "atHandle": "@gustavocalheiros.ia", "displayName": "Gustavo Calheiros | Designer estrategista com IA", "ownerName": "Gustavo Calheiros", "role": "Diretor Criativo Estrategista com IA (Anti-Slop, Funis & Filmes)", "targetAudience": "Marcas High-Ticket, Incorporadoras e Clínicas + Designers/Criadores", "website": "http://www.bianchinihub.com", "fetchStatus": "live_socialblade", "followers": 1583, "followersDelta": 3, "following": 221, "mediaCount": 51, "engagementRate": 0.57, "engagementRateDelta": -0.05, "averageLikes": 9.0, "averageComments": 0.0, "healthScore": 60, "officialInsights30d": {"source": "Social Blade Live + Auditoria Pública de Grade (51 posts)", "views30d": 14800, "nonFollowerViewsPct": 52.0, "followerViewsPct": 48.0, "reelsViewsPct": 81.0, "storiesViewsPct": 19.0, "interactions30d": 280, "nonFollowerInteractionsPct": 44.0, "engagedAccounts30d": 210, "profileVisits30d": 145, "dailyPeaks": [{"date": "2026-10-28", "views": 1150}, {"date": "2026-11-01", "views": 980}]}, "baselineComparison": {"previousFollowers": 1580, "previousEr": 0.62, "medianViewsEstimate": 1800}, "highs": ["Posicionamento claro e raro no mercado ('Designer estrategista com IA') com base qualificada de 1.583 seguidores e direção visual superior.", "Enorme oportunidade oceano azul: skills anti-slop (impeccable 101k stars e hallmark 46k stars) explodiram esta semana no GitTrend e casam 100% com o perfil."], "lows": ["Alerta vermelho no Social Blade: média atual travada em 9 likes e 0 comentários por post (ER de 0,57%).", "Ausência de quadro recorrente com voz/rosto analisando páginas reais + uso anterior de vídeos repostados sem gatilho de Direct.", "Vazamento de tráfego externo: rodapés de bianchinihub.com e bianchiniacademy.pro ainda apontavam para @ogustacriativo indisponível."], "tips": ["Estrear imediatamente o quadro semanal 'Análise Sincera: 4 Erros Que Derrubam Seu Preço' (Ideia #18) com câmera PiP e reveal Antes -> Depois.", "Lançar o Reel da isca gratuita 'Detector de Cara de IA Barata' (Ideia #11 - Comenta NOTA) para sair de 0 para 30+ comentários por vídeo.", "Gravar o Reel das skills Impeccable + Hallmark no Claude Code (Ideia #34 - Comenta DESIGN) unindo autoridade criativa e código."]}, {"key": "hub", "handle": "bianchini.hub", "atHandle": "@bianchini.hub", "displayName": "Bianchini Hub", "ownerName": "Bianchini Hub", "role": "Holding & Vitrine B2B das 5 Frentes (Contratos R$ 20k a R$ 200k+)", "targetAudience": "CEOs, Fundadores, Diretores Executivos e Conselhos de Empresas", "website": "http://www.bianchinihub.com", "fetchStatus": "live_socialblade", "followers": 665, "followersDelta": 0, "following": 210, "mediaCount": 78, "engagementRate": 1.28, "engagementRateDelta": 0.0, "averageLikes": 5.5, "averageComments": 3.0, "healthScore": 48, "officialInsights30d": {"source": "Social Blade Live + Auditoria Institucional (78 posts)", "views30d": 3900, "nonFollowerViewsPct": 38.0, "followerViewsPct": 62.0, "reelsViewsPct": 70.0, "storiesViewsPct": 30.0, "interactions30d": 195, "nonFollowerInteractionsPct": 41.0, "engagedAccounts30d": 130, "profileVisits30d": 310, "dailyPeaks": [{"date": "2026-10-30", "views": 260}, {"date": "2026-11-02", "views": 340}]}, "baselineComparison": {"previousFollowers": 665, "previousEr": 1.28, "medianViewsEstimate": 950}, "highs": ["Taxa de engajamento resiliente de 1,28% no Social Blade (acima da média corporativa B2B de 0,6%), mantendo 3 comentários médios por post.", "Recebe tráfego qualificado constante das bios de Victor, Gustavo, Lorenzo e Isa sempre que um Reel individual viraliza."], "lows": ["Gargalo comercial nº 1 do ecossistema: conta congelada sem novas publicações desde 12/12/2025 (quase 11 meses de hiato visível no grid).", "Decisores High-Ticket que clicam na @bianchini.hub antes de assinar proposta encontram vitrine desatualizada que não reflete o nível técnico atual."], "tips": ["Descongelar nesta semana com o Pin #1 Manifesto 'Nenhuma Empresa Escala em Pedaços' (Ideia #29) em Collab oficial com os sócios.", "Transformar toda sexta-feira em dia fixo do quadro 'A Mesa dos Sócios' (Ideia #30 - 45s respondendo dilema real de CEO).", "Publicar 1 Carrossel executivo 4:5 por semana focado em Segurança/LGPD, TCO e Cases Antes/Depois (Ideias #15 e #17)."]}, {"key": "isa", "handle": "isabianchini.ia", "atHandle": "@isabianchini.ia", "displayName": "Isa Bianchini | Diretora Executiva & Especialista em IA", "ownerName": "Isa Bianchini", "role": "Diretora Executiva & Co-fundadora (Gestão Executiva, Processos & IA)", "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe", "website": "https://chat.whatsapp.com/Di3V0wN8Km73ahpn5J9rfU?mode=ems_copy_t", "fetchStatus": "live_socialblade", "followers": 5267, "followersDelta": -5, "following": 1967, "mediaCount": 45, "engagementRate": 0.29, "engagementRateDelta": -0.21, "averageLikes": 14.06, "averageComments": 1.25, "healthScore": 61, "officialInsights30d": {"source": "Social Blade Live (03/11/2026) vs Baseline Apify Anterior", "views30d": 26400, "nonFollowerViewsPct": 49.0, "followerViewsPct": 51.0, "reelsViewsPct": 76.0, "storiesViewsPct": 24.0, "interactions30d": 490, "nonFollowerInteractionsPct": 45.0, "engagedAccounts30d": 360, "profileVisits30d": 290, "dailyPeaks": [{"date": "2026-10-27", "views": 2150}, {"date": "2026-11-01", "views": 1890}]}, "baselineComparison": {"previousFollowers": 5272, "previousEr": 0.5, "medianViewsEstimate": 4309}, "highs": ["Segunda maior audiência acumulada do grupo (5.267 seguidores) e forte autoridade executiva (Diretora Executiva, Co-fundadora & AH/SD).", "Potencial comprovado de alcance em vídeo: Reels anteriores bateram 4.309 visualizações médias (DcL0ai3xEqw) e picos de 56 likes / 18 comments."], "lows": ["Queda real detectada no cruzamento temporal: seguidores recuaram de 5.272 para 5.267 (-5 líquidos) e posts caíram de 47 para 45.", "Engagement Rate recuou de 0,50% para 0,29% no Social Blade hoje (média caiu de 23,0 likes / 3,5 comments para 14,1 likes / 1,25 comments).", "Relação seguindo/seguidores alta (1.967 seguindo, +35 recentes) e link da bio apontando para grupo aberto de WhatsApp sem triagem executiva."], "tips": ["Trocar posts estáticos sem gancho por Reels executivos de rotina real de diretoria com IA (Ideia #31: -14h/semana de reunião de status, CTA GESTAO).", "Publicar Carrosséis 4:5 voltados a donos e diretores implementando IA na equipe sem caos (Ideia #32 - CTA LIDERANCA), atraindo contratos e treinamentos in-company.", "Participar de 'A Mesa dos Sócios' na @bianchini.hub em Collab para cruzar sua base de 5,2 mil seguidores com a vitrine B2B."]}]};
+    const LS_STATE_KEY = "bianchini_analytics_realtime_state_v1";
+    const IDB_ANALYTICS = "BianchiniAnalyticsRealtimeDB_v1";
+
+    function saveToIdb(data) {
+      try {
+        const req = indexedDB.open(IDB_ANALYTICS, 1);
+        req.onupgradeneeded = () => req.result.createObjectStore("store");
+        req.onsuccess = () => {
+          const tx = req.result.transaction("store", "readwrite");
+          tx.objectStore("store").put(data, "analytics_state");
+        };
+      } catch (_) {}
+    }
+
+    function loadFromIdb() {
+      return new Promise((resolve) => {
+        try {
+          const req = indexedDB.open(IDB_ANALYTICS, 1);
+          req.onupgradeneeded = () => req.result.createObjectStore("store");
+          req.onsuccess = () => {
+            const tx = req.result.transaction("store", "readonly");
+            const getReq = tx.objectStore("store").get("analytics_state");
+            getReq.onsuccess = () => resolve(getReq.result || null);
+            getReq.onerror = () => resolve(null);
+          };
+          req.onerror = () => resolve(null);
+        } catch (_) {
+          resolve(null);
+        }
+      });
+    }
+
+    function parseSocialBladeNextData(html) {
+      const match = html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/);
+      if (!match) return null;
+      const nd = JSON.parse(match[1]);
+      const queries = nd?.props?.pageProps?.trpcState?.json?.queries || [];
+      for (const q of queries) {
+        const k = q?.queryKey?.[0];
+        if (Array.isArray(k) && k[0] === "instagram" && k[1] === "user") {
+          return q?.state?.data || null;
+        }
+      }
+      return null;
+    }
+
+    const { createApp, ref, computed, watch, onMounted, onUnmounted } = Vue;
+
+    createApp({
+      setup() {
+        const viewTab = ref("overview");
+        const accounts = ref(INITIAL_ANALYTICS.accounts);
+        const selectedHandle = ref("lorenzogarcia.ia");
+        const historyLog = ref([]);
+        const completedTips = ref({});
+        const isSyncing = ref(false);
+        const pollIntervalSec = ref(60);
+        const lastSyncIso = ref(INITIAL_ANALYTICS.updatedAt);
+        const syncStatusLabel = ref("Salvo em IndexedDB + localStorage");
+        const editingAccount = ref(null);
+        let timerId = null;
+
+        const buildSummaryMap = (accList) => {
+          const map = {};
+          for (const a of accList) {
+            map[a.handle] = `${a.followers} seg · ER ${a.engagementRate}% · ${a.averageLikes}L/${a.averageComments}C`;
+          }
+          return map;
+        };
+
+        const recalculateDiagnostics = (acc) => {
+          acc.followersDelta = acc.followers - acc.baselineComparison.previousFollowers;
+          acc.engagementRateDelta = Number((acc.engagementRate - acc.baselineComparison.previousEr).toFixed(2));
+          acc.officialInsights30d.followerViewsPct = Number((100 - acc.officialInsights30d.nonFollowerViewsPct).toFixed(1));
+          if (acc.handle !== "bianchini.hub") {
+            let score = 50 + Math.min(25, acc.engagementRate * 8.5) + Math.min(15, acc.averageComments * 0.4);
+            if (acc.followers >= 5000) score += 8;
+            else if (acc.followers >= 1000) score += 5;
+            acc.healthScore = Math.max(25, Math.min(96, Math.round(score)));
+          }
+        };
+
+        const persistEverything = (originLabel) => {
+          if (originLabel) {
+            const summary = buildSummaryMap(accounts.value);
+            const last = historyLog.value[0];
+            const changed = !last || JSON.stringify(last.summary) !== JSON.stringify(summary);
+            if (changed || originLabel.includes("Manual") || originLabel.includes("Ao Vivo")) {
+              historyLog.value.unshift({
+                id: crypto.randomUUID(),
+                ts: new Date().toISOString(),
+                origin: originLabel,
+                summary
+              });
+              if (historyLog.value.length > 200) historyLog.value.length = 200;
+            }
+          }
+          const stateToSave = JSON.parse(JSON.stringify({
+            savedAt: new Date().toISOString(),
+            lastSyncIso: lastSyncIso.value,
+            accounts: accounts.value,
+            historyLog: historyLog.value,
+            completedTips: completedTips.value
+          }));
+          try {
+            localStorage.setItem(LS_STATE_KEY, JSON.stringify(stateToSave));
+          } catch (_) {}
+          saveToIdb(stateToSave);
+          syncStatusLabel.value = "Salvo às " + new Date().toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+        };
+
+        const syncLiveNow = async (tryCorsProbe = false) => {
+          if (isSyncing.value) return;
+          isSyncing.value = true;
+          let updatedFromFeed = false;
+          try {
+            const res = await fetch("./data/analytics-live-5d9c3a7e.json?t=" + Date.now(), { cache: "no-store" });
+            if (res.ok) {
+              const feed = await res.json();
+              if (Array.isArray(feed.accounts)) {
+                for (const remoteAcc of feed.accounts) {
+                  const localAcc = accounts.value.find(a => a.handle === remoteAcc.handle);
+                  if (localAcc && (!lastSyncIso.value || feed.updatedAt >= lastSyncIso.value)) {
+                    localAcc.followers = remoteAcc.followers;
+                    localAcc.following = remoteAcc.following;
+                    localAcc.mediaCount = remoteAcc.mediaCount;
+                    localAcc.engagementRate = remoteAcc.engagementRate;
+                    localAcc.averageLikes = remoteAcc.averageLikes;
+                    localAcc.averageComments = remoteAcc.averageComments;
+                    recalculateDiagnostics(localAcc);
+                    updatedFromFeed = true;
+                  }
+                }
+                lastSyncIso.value = feed.updatedAt || new Date().toISOString();
+              }
+            }
+          } catch (_) {}
+
+          if (tryCorsProbe) {
+            await Promise.all(accounts.value.map(async (acc) => {
+              try {
+                const target = encodeURIComponent("https://socialblade.com/instagram/user/" + acc.handle);
+                const probe = await fetch("https://api.allorigins.win/raw?url=" + target, { signal: AbortSignal.timeout(8000) });
+                if (!probe.ok) return;
+                const html = await probe.text();
+                const sb = parseSocialBladeNextData(html);
+                if (sb && sb.followers) {
+                  acc.followers = Number(sb.followers);
+                  acc.following = Number(sb.following ?? acc.following);
+                  acc.mediaCount = Number(sb.mediaCount ?? acc.mediaCount);
+                  acc.engagementRate = Number(Number(sb.engagementRate ?? acc.engagementRate).toFixed(2));
+                  acc.averageLikes = Number(Number(sb.averageLikes ?? acc.averageLikes).toFixed(2));
+                  acc.averageComments = Number(Number(sb.averageComments ?? acc.averageComments).toFixed(2));
+                  recalculateDiagnostics(acc);
+                  lastSyncIso.value = new Date().toISOString();
+                }
+              } catch (_) {}
+            }));
+          }
+
+          persistEverything(tryCorsProbe ? "Sonda Ao Vivo Social Blade" : (updatedFromFeed ? "Feed Live Sincronizado" : ""));
+          isSyncing.value = false;
+        };
+
+        const setupPolling = () => {
+          if (timerId) clearInterval(timerId);
+          if (pollIntervalSec.value > 0) {
+            timerId = setInterval(() => { void syncLiveNow(false); }, pollIntervalSec.value * 1000);
+          }
+        };
+
+        watch(pollIntervalSec, setupPolling);
+
+        onMounted(async () => {
+          let restored = null;
+          try {
+            const raw = localStorage.getItem(LS_STATE_KEY);
+            if (raw) restored = JSON.parse(raw);
+          } catch (_) {}
+          if (!restored) restored = await loadFromIdb();
+
+          if (restored && Array.isArray(restored.accounts) && restored.accounts.length === 5) {
+            accounts.value = restored.accounts;
+            historyLog.value = Array.isArray(restored.historyLog) ? restored.historyLog : [];
+            completedTips.value = restored.completedTips || {};
+            lastSyncIso.value = restored.lastSyncIso || INITIAL_ANALYTICS.updatedAt;
+          } else {
+            persistEverything("Baseline Verificado (Insights + Social Blade)");
+          }
+
+          await syncLiveNow(false);
+          setupPolling();
+        });
+
+        onUnmounted(() => {
+          if (timerId) clearInterval(timerId);
+        });
+
+        const currentAccount = computed(() =>
+          accounts.value.find(a => a.handle === selectedHandle.value) || accounts.value[0]
+        );
+
+        const accountsSortedByEr = computed(() =>
+          [...accounts.value].sort((a, b) => b.engagementRate - a.engagementRate)
+        );
+
+        const totalFollowers = computed(() => accounts.value.reduce((s, a) => s + Number(a.followers || 0), 0));
+        const totalViews30d = computed(() => accounts.value.reduce((s, a) => s + Number(a.officialInsights30d?.views30d || 0), 0));
+        const meanEr = computed(() =>
+          (accounts.value.reduce((s, a) => s + Number(a.engagementRate || 0), 0) / accounts.value.length).toFixed(2)
+        );
+
+        const lastSyncTimeLabel = computed(() => formatDateTime(lastSyncIso.value));
+
+        const healthChipClass = (score) => {
+          if (score >= 70) return "chip-sage";
+          if (score >= 55) return "chip-gold";
+          return "chip-clay";
+        };
+
+        const isTipDone = (handle, idx) => Boolean(completedTips.value[`${handle}:${idx}`]);
+        const toggleTip = (handle, idx) => {
+          const key = `${handle}:${idx}`;
+          completedTips.value = { ...completedTips.value, [key]: !completedTips.value[key] };
+          persistEverything("");
+        };
+
+        const openManualUpdate = (acc) => {
+          editingAccount.value = JSON.parse(JSON.stringify(acc));
+        };
+
+        const saveManualUpdate = () => {
+          if (!editingAccount.value) return;
+          const idx = accounts.value.findIndex(a => a.handle === editingAccount.value.handle);
+          if (idx >= 0) {
+            recalculateDiagnostics(editingAccount.value);
+            accounts.value.splice(idx, 1, editingAccount.value);
+          }
+          lastSyncIso.value = new Date().toISOString();
+          persistEverything(`Atualização Manual (${editingAccount.value.atHandle})`);
+          editingAccount.value = null;
+        };
+
+        const backupHref = computed(() =>
+          "data:application/json;charset=utf-8," +
+          encodeURIComponent(JSON.stringify({
+            exportedAt: new Date().toISOString(),
+            accounts: accounts.value,
+            historyLog: historyLog.value,
+            completedTips: completedTips.value
+          }, null, 2))
+        );
+
+        const importBackup = (event) => {
+          const file = event.target.files?.[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = () => {
+            try {
+              const parsed = JSON.parse(String(reader.result));
+              if (Array.isArray(parsed.accounts) && parsed.accounts.length > 0) {
+                accounts.value = parsed.accounts;
+                if (Array.isArray(parsed.historyLog)) historyLog.value = parsed.historyLog;
+                if (parsed.completedTips) completedTips.value = parsed.completedTips;
+                persistEverything("Backup Importado");
+              }
+            } catch (_) {}
+          };
+          reader.readAsText(file);
+        };
+
+        function formatDateTime(iso) {
+          try {
+            return new Date(iso).toLocaleString("pt-BR", {
+              day: "2-digit", month: "2-digit", year: "numeric",
+              hour: "2-digit", minute: "2-digit", second: "2-digit"
+            });
+          } catch (_) {
+            return iso;
+          }
+        }
+
+        return {
+          viewTab, accounts, selectedHandle, currentAccount, accountsSortedByEr,
+          historyLog, isSyncing, pollIntervalSec, syncStatusLabel, lastSyncTimeLabel,
+          totalFollowers, totalViews30d, meanEr, healthChipClass,
+          syncLiveNow, isTipDone, toggleTip,
+          editingAccount, openManualUpdate, saveManualUpdate,
+          backupHref, importBackup, formatDateTime
+        };
+      }
+    }).mount("#app");
+  </script>
+</body>
+</html>

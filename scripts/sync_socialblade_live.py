@@ -100,7 +100,7 @@ ACCOUNTS_META = [
         "role": "Diretor Criativo Estrategista com IA (Anti-Slop, Funis & Filmes)",
         "targetAudience": "Marcas High-Ticket, Incorporadoras e Clínicas + Designers/Criadores",
         "officialInsights30d": {
-            "source": "Social Blade Live + Auditoria Pública de Grade (51 posts)",
+            "source": "Auditoria Autorizada No Gustavo (@gustavocalheiros.ia - Apify + Social Blade Live em 03/11/2026; igbot OAuth conectado em 02/11)",
             "views30d": 14800,
             "nonFollowerViewsPct": 52.0,
             "followerViewsPct": 48.0,
@@ -111,8 +111,96 @@ ACCOUNTS_META = [
             "engagedAccounts30d": 210,
             "profileVisits30d": 145,
             "dailyPeaks": [
-                {"date": "2026-10-28", "views": 1150},
-                {"date": "2026-11-01", "views": 980}
+                        {
+                                    "date": "2026-10-28",
+                                    "views": 2435
+                        },
+                        {
+                                    "date": "2026-11-01",
+                                    "views": 980
+                        }
+            ],
+            "recentPosts5": [
+                        {
+                                    "shortCode": "DfQ5X2jjprJ",
+                                    "url": "https://www.instagram.com/p/DfQ5X2jjprJ/",
+                                    "publishedAt": "2026-11-03T03:17:29.000Z",
+                                    "format": "reel_solo",
+                                    "isPinned": False,
+                                    "views": 44,
+                                    "reachEstimate": 39,
+                                    "likes": 9,
+                                    "comments": 0,
+                                    "saves": None,
+                                    "shares": None,
+                                    "captionPreview": "“Você trabalha com IA, seus prompts devem ser super elaborados, né?”"
+                        },
+                        {
+                                    "shortCode": "DfM1ugpFHyV",
+                                    "url": "https://www.instagram.com/p/DfM1ugpFHyV/",
+                                    "publishedAt": "2026-11-01T13:28:41.000Z",
+                                    "format": "reel_collab (@victorbianchini.ia)",
+                                    "isPinned": False,
+                                    "views": 208,
+                                    "reachEstimate": 183,
+                                    "likes": 10,
+                                    "comments": 4,
+                                    "saves": None,
+                                    "shares": None,
+                                    "captionPreview": "Claude: 1.735 palavras e um \"você está bem?\" 🫠"
+                        },
+                        {
+                                    "shortCode": "DfGmiMik2rY",
+                                    "url": "https://www.instagram.com/p/DfGmiMik2rY/",
+                                    "publishedAt": "2026-10-30T03:20:50.000Z",
+                                    "format": "reel_collab (@victorbianchini.ia)",
+                                    "isPinned": False,
+                                    "views": 201,
+                                    "reachEstimate": 177,
+                                    "likes": 21,
+                                    "comments": 14,
+                                    "saves": None,
+                                    "shares": None,
+                                    "captionPreview": "Site com cara de IA genérica mata o seu ticket nos primeiros 2 segundos."
+                        },
+                        {
+                                    "shortCode": "DfBbeYqk9jp",
+                                    "url": "https://www.instagram.com/p/DfBbeYqk9jp/",
+                                    "publishedAt": "2026-10-28T03:07:58.000Z",
+                                    "format": "reel_collab (@victorbianchini.ia)",
+                                    "isPinned": False,
+                                    "views": 2435,
+                                    "reachEstimate": 2143,
+                                    "likes": 146,
+                                    "comments": 108,
+                                    "saves": None,
+                                    "shares": None,
+                                    "captionPreview": "O xtool, ferramenta de código aberto que permite criar, assinar e instalar apps de iPhone "
+                        },
+                        {
+                                    "shortCode": "Dd-O3OcuVH1",
+                                    "url": "https://www.instagram.com/p/Dd-O3OcuVH1/",
+                                    "publishedAt": "2026-10-02T00:48:32.000Z",
+                                    "format": "reel_collab (@victorbianchini.ia)",
+                                    "isPinned": False,
+                                    "views": 2901,
+                                    "reachEstimate": 2553,
+                                    "likes": 58,
+                                    "comments": 5,
+                                    "saves": None,
+                                    "shares": None,
+                                    "captionPreview": "20 travas que a IA precisa colocar pro seu app não ser banido nem processado (em 30 segund"
+                        }
+            ],
+            "pinnedReels": [
+                        {
+                                    "shortCode": "DSLsq1uDe5X",
+                                    "url": "https://www.instagram.com/p/DSLsq1uDe5X/",
+                                    "publishedAt": "2025-12-13T00:02:21.000Z",
+                                    "views": 6402,
+                                    "likes": 473,
+                                    "comments": 198
+                        }
             ]
         },
         "baselineComparison": {

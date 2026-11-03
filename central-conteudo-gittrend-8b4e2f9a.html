@@ -148,6 +148,7 @@
     th, td { text-align: left; padding: 12px; border-bottom: 1px solid var(--line); font-size: 13px; vertical-align: top; }
     th { color: var(--gold); font-weight: 600; font-size: 12px; }
 </style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cfb07c' stroke-width='2'%3E%3Cpath d='M12 2L21 7v10l-9 5-9-5V7l9-5z'/%3E%3Cpath d='M12 7v10M7.5 9.5l9 5'/%3E%3C/svg%3E" />
 </head>
 <body>
   <div id="app" class="container">
@@ -155,42 +156,42 @@
       <div class="hero-top">
         <div>
           <div class="brand-pill">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.5 8.5 22 12 15.5 15.5 12 22 8.5 15.5 2 12 8.5 8.5 12 2"/></svg>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L21 7v10l-9 5-9-5V7l9-5z"/><path d="M12 7v10M7.5 9.5l9 5"/></svg>
             <span>ACESSO RESTRITO POR LINK · BIANCHINI CONTENT OS + GITTREND</span>
           </div>
           <h1>Central de Ideias, <span>GitTrend &amp; Produção Agêntica</span></h1>
           <p class="hero-sub">
-            Espelho operacional sincronizado com o repositório <strong>bianchini-conteudo</strong>: { items.length } pautas completas para as 5 contas, estimativa real de engajamento, estilo de edição, ferramentas do <strong>GitTrend (Nov/2026)</strong> e passo a passo de produção <strong>Manual vs. VSCode + Claude Code + MCPs/APIs</strong>. Tudo que você editar salva automaticamente neste navegador.
+            Espelho operacional sincronizado com o repositório <strong>bianchini-conteudo</strong>: {{ items.length }} pautas completas para as 5 contas, estimativa real de engajamento, estilo de edição, ferramentas do <strong>GitTrend (Nov/2026)</strong> e passo a passo de produção <strong>Manual vs. VSCode + Claude Code + MCPs/APIs</strong>. Tudo que você editar salva automaticamente neste navegador.
           </p>
         </div>
 
         <div class="kpi-grid">
           <div class="kpi-box">
             <div class="kpi-lbl">Contas Ativas</div>
-            <div class="kpi-val">{ profiles.length }</div>
+            <div class="kpi-val">{{ profiles.length }}</div>
             <div class="kpi-sub">Victor, Gusta, Lorenzo, Hub, Isa</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">Pautas Completas</div>
-            <div class="kpi-val">{ items.length }</div>
-            <div class="kpi-sub">{ readyCount } prontas / em edição</div>
+            <div class="kpi-val">{{ items.length }}</div>
+            <div class="kpi-sub">{{ readyCount }} prontas / em edição</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">Radar GitTrend</div>
-            <div class="kpi-val">{ gittrend.length }</div>
+            <div class="kpi-val">{{ gittrend.length }}</div>
             <div class="kpi-sub">Repos explosivos hoje</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">Auto-Save Local</div>
             <div class="kpi-val" style="color:var(--sage);font-size:16px;padding-top:4px"><span class="status-dot"></span> Ativo</div>
-            <div class="kpi-sub">{ lastSavedLabel }</div>
+            <div class="kpi-sub">{{ lastSavedLabel }}</div>
           </div>
         </div>
       </div>
 
       <nav class="nav-bar">
         <button class="tab-btn" :class="{ active: activeTab === 'ideas' }" @click="activeTab = 'ideas'">
-          1. Banco de Pautas &amp; Guias ({ filteredItems.length })
+          1. Banco de Pautas &amp; Guias ({{ filteredItems.length }})
         </button>
         <button class="tab-btn" :class="{ active: activeTab === 'gittrend' }" @click="activeTab = 'gittrend'">
           2. Novidades GitTrend: VSCode, Claude, Skills &amp; MCPs
@@ -216,9 +217,9 @@
           <div class="field">
             <label>Filtrar por Conta (5 Perfis)</label>
             <select v-model="filterProfile">
-              <option value="all">Todas as 5 contas ({ items.length })</option>
+              <option value="all">Todas as 5 contas ({{ items.length }})</option>
               <option v-for="p in profiles" :key="p.id" :value="p.id">
-                { p.displayName } ({ p.handle })
+                {{ p.displayName }} ({{ p.handle }})
               </option>
             </select>
           </div>
@@ -226,7 +227,7 @@
             <label>Filtrar por Etapa do Pipeline</label>
             <select v-model="filterStage">
               <option value="all">Todas as etapas</option>
-              <option v-for="(lbl, key) in stageLabels" :key="key" :value="key">{ lbl }</option>
+              <option v-for="(lbl, key) in stageLabels" :key="key" :value="key">{{ lbl }}</option>
             </select>
           </div>
           <div class="field">
@@ -250,39 +251,39 @@
           <div>
             <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px">
               <span class="chip" :class="profileChipClass(item.profileId)">
-                { profileById(item.profileId)?.displayName } · { profileById(item.profileId)?.handle }
+                {{ profileById(item.profileId)?.displayName }} · {{ profileById(item.profileId)?.handle }}
               </span>
               <div style="display:flex;gap:6px;align-items:center">
-                <span class="chip">{ formatLabels[item.format] || item.format }</span>
+                <span class="chip">{{ formatLabels[item.format] || item.format }}</span>
                 <select
                   :value="item.stage"
                   @change="changeStage(item, $event.target.value)"
                   style="width:auto;padding:4px 9px;font-size:12px;border-radius:999px;font-weight:600"
                 >
-                  <option v-for="(lbl, k) in stageLabels" :key="k" :value="k">{ lbl }</option>
+                  <option v-for="(lbl, k) in stageLabels" :key="k" :value="k">{{ lbl }}</option>
                 </select>
               </div>
             </div>
 
-            <h3 style="font-size:18px;line-height:1.3;margin-bottom:8px">{ item.title }</h3>
+            <h3 style="font-size:18px;line-height:1.3;margin-bottom:8px">{{ item.title }}</h3>
 
             <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px">
-              <span class="chip chip-gold">Estimativa: { item.engagementEstimate }</span>
-              <span v-if="item.scheduledDate" class="chip">Agenda: { item.scheduledDate }</span>
-              <span class="chip chip-sage">Direct CTA: { item.ctaTrigger }</span>
+              <span class="chip chip-gold">Estimativa: {{ item.engagementEstimate }}</span>
+              <span v-if="item.scheduledDate" class="chip">Agenda: {{ item.scheduledDate }}</span>
+              <span class="chip chip-sage">Direct CTA: {{ item.ctaTrigger }}</span>
             </div>
 
             <div class="hook-box">
               <div style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:3px">Gancho dos 3 Primeiros Segundos</div>
-              <div style="font-size:13.5px;color:var(--ink)">"{ item.hookThreeSeconds }"</div>
-              <div style="font-size:12px;color:var(--mist);margin-top:6px">{ item.visualDirection }</div>
+              <div style="font-size:13.5px;color:var(--ink)">"{{ item.hookThreeSeconds }}"</div>
+              <div style="font-size:12px;color:var(--mist);margin-top:6px">{{ item.visualDirection }}</div>
             </div>
 
             <div style="font-size:12.5px;color:var(--ink-soft);margin-bottom:6px">
-              <strong style="color:var(--ink)">Estilo de edição:</strong> { item.editingStyle }
+              <strong style="color:var(--ink)">Estilo de edição:</strong> {{ item.editingStyle }}
             </div>
             <div style="font-size:12.5px;color:var(--ink-soft)">
-              <strong style="color:var(--gold)">Ferramentas &amp; MCPs:</strong> { item.recommendedTools }
+              <strong style="color:var(--gold)">Ferramentas &amp; MCPs:</strong> {{ item.recommendedTools }}
             </div>
 
             <div class="sub-tabs">
@@ -297,9 +298,9 @@
               </button>
             </div>
 
-            <div v-if="cardTab(item.id) === 'agentic'" class="guide-box">{ item.agenticProductionGuide }</div>
-            <div v-else-if="cardTab(item.id) === 'manual'" class="guide-box">{ item.manualProductionGuide }</div>
-            <div v-else class="guide-box">{ item.scriptOutline }</div>
+            <div v-if="cardTab(item.id) === 'agentic'" class="guide-box">{{ item.agenticProductionGuide }}</div>
+            <div v-else-if="cardTab(item.id) === 'manual'" class="guide-box">{{ item.manualProductionGuide }}</div>
+            <div v-else class="guide-box">{{ item.scriptOutline }}</div>
           </div>
 
           <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;padding-top:12px;border-top:1px solid var(--line)">
@@ -308,7 +309,7 @@
               <button class="btn btn-sm" @click="openEditor(item)">Editar Pauta</button>
             </div>
             <button class="btn btn-sm btn-gold" @click="copyIdea(item)">
-              { copiedId === item.id ? 'Copiado!' : 'Copiar Briefing Completo' }
+              {{ copiedId === item.id ? 'Copiado!' : 'Copiar Briefing Completo' }}
             </button>
           </div>
         </article>
@@ -326,8 +327,8 @@
             </p>
           </div>
           <select v-model="filterGitCategory" style="width:auto;min-width:240px">
-            <option value="all">Todas as categorias ({ gittrend.length })</option>
-            <option v-for="cat in gitCategories" :key="cat" :value="cat">{ cat }</option>
+            <option value="all">Todas as categorias ({{ gittrend.length }})</option>
+            <option v-for="cat in gitCategories" :key="cat" :value="cat">{{ cat }}</option>
           </select>
         </div>
 
@@ -336,17 +337,17 @@
             <div>
               <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:6px">
                 <a :href="repo.url" target="_blank" rel="noopener noreferrer" style="color:var(--gold);font-weight:700;font-size:15px;text-decoration:none">
-                  { repo.repo } ↗
+                  {{ repo.repo }} ↗
                 </a>
                 <div style="display:flex;gap:6px">
-                  <span class="chip chip-gold">{ repo.stars.toLocaleString('pt-BR') } stars</span>
-                  <span class="chip chip-sage">{ repo.weeklyDelta }</span>
+                  <span class="chip chip-gold">{{ repo.stars.toLocaleString('pt-BR') }} stars</span>
+                  <span class="chip chip-sage">{{ repo.weeklyDelta }}</span>
                 </div>
               </div>
-              <span class="chip" style="margin-bottom:8px">{ repo.category }</span>
-              <p style="color:var(--ink);font-size:13.5px;margin-bottom:8px">{ repo.summary }</p>
+              <span class="chip" style="margin-bottom:8px">{{ repo.category }}</span>
+              <p style="color:var(--ink);font-size:13.5px;margin-bottom:8px">{{ repo.summary }}</p>
               <p style="color:var(--ink-soft);font-size:12.5px">
-                <strong style="color:var(--mist)">Aplicação Bianchini:</strong> { repo.howToUse }
+                <strong style="color:var(--mist)">Aplicação Bianchini:</strong> {{ repo.howToUse }}
               </p>
             </div>
           </div>
@@ -363,8 +364,8 @@
         </p>
         <div class="grid-3">
           <div v-for="mcp in mcpArsenal" :key="mcp.name" class="guide-box">
-            <div style="color:var(--gold);font-weight:700;font-size:14px;margin-bottom:6px">{ mcp.name }</div>
-            <p style="font-size:13px;color:var(--ink-soft)">{ mcp.role }</p>
+            <div style="color:var(--gold);font-weight:700;font-size:14px;margin-bottom:6px">{{ mcp.name }}</div>
+            <p style="font-size:13px;color:var(--ink-soft)">{{ mcp.role }}</p>
           </div>
         </div>
       </div>
@@ -392,20 +393,20 @@
       <div class="grid-2">
         <div v-for="p in profiles" :key="p.id" class="card" style="margin-bottom:0">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-            <h3 style="font-size:19px">{ p.displayName } <span style="color:var(--gold)">{ p.handle }</span></h3>
-            <span class="chip">Mediana base: { p.baselineMedianViews.toLocaleString('pt-BR') } views</span>
+            <h3 style="font-size:19px">{{ p.displayName }} <span style="color:var(--gold)">{{ p.handle }}</span></h3>
+            <span class="chip">Mediana base: {{ p.baselineMedianViews.toLocaleString('pt-BR') }} views</span>
           </div>
-          <p style="color:var(--ink-soft);margin-bottom:12px">{ p.positioningSummary }</p>
+          <p style="color:var(--ink-soft);margin-bottom:12px">{{ p.positioningSummary }}</p>
           <div style="margin-bottom:10px">
             <div style="font-size:12px;color:var(--gold);font-weight:700;margin-bottom:4px">Pilares Editoriais</div>
             <div style="display:flex;gap:6px;flex-wrap:wrap">
-              <span v-for="pil in p.contentPillars" :key="pil" class="chip">{ pil }</span>
+              <span v-for="pil in p.contentPillars" :key="pil" class="chip">{{ pil }}</span>
             </div>
           </div>
           <div>
             <div style="font-size:12px;color:var(--ink-faint);font-weight:700;margin-bottom:4px">Diretrizes de Voz</div>
             <ul style="padding-left:18px;color:var(--ink-soft);font-size:13px">
-              <li v-for="vg in p.voiceGuidelines" :key="vg">{ vg }</li>
+              <li v-for="vg in p.voiceGuidelines" :key="vg">{{ vg }}</li>
             </ul>
           </div>
         </div>
@@ -416,7 +417,7 @@
     <div v-if="editingItem" class="modal-backdrop" @click.self="editingItem = null">
       <div class="modal-panel">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
-          <h3 style="font-size:20px">{ isCreating ? 'Nova Ideia de Conteúdo' : 'Editar Pauta &amp; Engenharia de Produção' }</h3>
+          <h3 style="font-size:20px">{{ isCreating ? 'Nova Ideia de Conteúdo' : 'Editar Pauta &amp; Engenharia de Produção' }}</h3>
           <button class="btn btn-sm" @click="editingItem = null">Fechar</button>
         </div>
         <div style="display:grid;gap:12px">
@@ -428,7 +429,7 @@
             <div class="field">
               <label>Conta</label>
               <select v-model="editingItem.profileId">
-                <option v-for="p in profiles" :key="p.id" :value="p.id">{ p.displayName } ({ p.handle })</option>
+                <option v-for="p in profiles" :key="p.id" :value="p.id">{{ p.displayName }} ({{ p.handle }})</option>
               </select>
             </div>
             <div class="field">
@@ -442,7 +443,7 @@
             <div class="field">
               <label>Etapa</label>
               <select v-model="editingItem.stage">
-                <option v-for="(lbl, k) in stageLabels" :key="k" :value="k">{ lbl }</option>
+                <option v-for="(lbl, k) in stageLabels" :key="k" :value="k">{{ lbl }}</option>
               </select>
             </div>
             <div class="field">
@@ -492,15 +493,15 @@
     <div v-if="teleprompterItem" class="modal-backdrop" @click.self="teleprompterItem = null">
       <div class="modal-panel" style="max-width:720px;text-align:center;padding:36px 28px">
         <div class="chip chip-gold" style="margin-bottom:12px">MODO TELEPROMPTER · LEITURA DE GRAVAÇÃO</div>
-        <h3 style="font-size:22px;margin-bottom:18px">{ teleprompterItem.title }</h3>
+        <h3 style="font-size:22px;margin-bottom:18px">{{ teleprompterItem.title }}</h3>
         <div style="background:var(--bg);border:1px solid var(--line-strong);border-radius:16px;padding:24px;text-align:left;font-size:21px;line-height:1.7;white-space:pre-line;color:var(--ink)">
           <strong style="color:var(--gold)">[GANCHO 0-3s]</strong>
-          { teleprompterItem.hookThreeSeconds }
+          {{ teleprompterItem.hookThreeSeconds }}
 
-          { teleprompterItem.scriptOutline }
+          {{ teleprompterItem.scriptOutline }}
 
           <strong style="color:var(--sage)">[CHAMADA FINAL]</strong>
-          Comenta { teleprompterItem.ctaTrigger } aqui embaixo que eu te envio no Direct.
+          Comenta {{ teleprompterItem.ctaTrigger }} aqui embaixo que eu te envio no Direct.
         </div>
         <div style="margin-top:20px">
           <button class="btn btn-gold" @click="teleprompterItem = null">Fechar Teleprompter</button>
@@ -566,10 +567,10 @@
         };
 
         const persistState = () => {
-          const snapshot = {
+          const snapshot = JSON.parse(JSON.stringify({
             savedAt: new Date().toISOString(),
             items: items.value
-          };
+          }));
           try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshot));
           } catch (_) {}

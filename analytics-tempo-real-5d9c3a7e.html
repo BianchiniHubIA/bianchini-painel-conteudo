@@ -170,6 +170,7 @@
     .delta-down { color: var(--clay); font-weight: 700; font-size: 12px; }
     .delta-flat { color: var(--ink-faint); font-size: 12px; }
   </style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cfb07c' stroke-width='2'%3E%3Cpath d='M12 2L21 7v10l-9 5-9-5V7l9-5z'/%3E%3Cpath d='M12 7v10M7.5 9.5l9 5'/%3E%3C/svg%3E" />
 </head>
 <body>
   <div id="app" class="container">
@@ -189,23 +190,23 @@
         <div class="kpi-grid">
           <div class="kpi-box">
             <div class="kpi-lbl">Audiência Somada</div>
-            <div class="kpi-val">{ totalFollowers.toLocaleString('pt-BR') }</div>
+            <div class="kpi-val">{{ totalFollowers.toLocaleString('pt-BR') }}</div>
             <div class="kpi-sub">5 contas monitoradas</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">Alcance / Views (30d)</div>
-            <div class="kpi-val">{ totalViews30d.toLocaleString('pt-BR') }</div>
+            <div class="kpi-val">{{ totalViews30d.toLocaleString('pt-BR') }}</div>
             <div class="kpi-sub">79,8% não-seg no Lorenzo</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">ER Médio Grupo</div>
-            <div class="kpi-val">{ meanEr }%</div>
+            <div class="kpi-val">{{ meanEr }}%</div>
             <div class="kpi-sub">Líder prop.: @lorenzogarcia.ia</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">Snapshots Salvos</div>
-            <div class="kpi-val">{ historyLog.length }</div>
-            <div class="kpi-sub">{ syncStatusLabel }</div>
+            <div class="kpi-val">{{ historyLog.length }}</div>
+            <div class="kpi-sub">{{ syncStatusLabel }}</div>
           </div>
         </div>
       </div>
@@ -218,7 +219,7 @@
           2. Matriz Comparativa &amp; Gráficos
         </button>
         <button class="tab-btn" :class="{ active: viewTab === 'history' }" @click="viewTab = 'history'">
-          3. Histórico Salvo &amp; Atualizar Insights ({ historyLog.length })
+          3. Histórico Salvo &amp; Atualizar Insights ({{ historyLog.length }})
         </button>
 
         <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;align-items:center">
@@ -229,7 +230,7 @@
             <option :value="0">Auto-Refresh: Pausado</option>
           </select>
           <button class="btn btn-gold" :disabled="isSyncing" @click="syncLiveNow(true)">
-            { isSyncing ? 'Sincronizando 5 contas...' : 'Sincronizar Agora (Ao Vivo)' }
+            {{ isSyncing ? 'Sincronizando 5 contas...' : 'Sincronizar Agora (Ao Vivo)' }}
           </button>
           <a class="btn" :href="backupHref" download="bianchini-analytics-historico.json">Backup JSON</a>
         </div>
@@ -247,18 +248,18 @@
         @click="selectedHandle = acc.handle; viewTab = 'overview'"
       >
         <div style="display:flex;justify-content:space-between;align-items:center;gap:6px;margin-bottom:6px">
-          <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;color:var(--gold)">{ acc.atHandle }</span>
-          <span class="chip" :class="healthChipClass(acc.healthScore)">Saúde { acc.healthScore }/100</span>
+          <span style="font-family:'Manrope',sans-serif;font-weight:700;font-size:15px;color:var(--gold)">{{ acc.atHandle }}</span>
+          <span class="chip" :class="healthChipClass(acc.healthScore)">Saúde {{ acc.healthScore }}/100</span>
         </div>
         <div style="font-size:18px;font-weight:800;font-variant-numeric:tabular-nums">
-          { acc.followers.toLocaleString('pt-BR') } <span style="font-size:12px;font-weight:500;color:var(--ink-faint)">seg</span>
-          <span v-if="acc.followersDelta > 0" class="delta-up"> +{ acc.followersDelta }</span>
-          <span v-else-if="acc.followersDelta < 0" class="delta-down"> { acc.followersDelta }</span>
+          {{ acc.followers.toLocaleString('pt-BR') }} <span style="font-size:12px;font-weight:500;color:var(--ink-faint)">seg</span>
+          <span v-if="acc.followersDelta > 0" class="delta-up"> +{{ acc.followersDelta }}</span>
+          <span v-else-if="acc.followersDelta < 0" class="delta-down"> {{ acc.followersDelta }}</span>
         </div>
         <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--ink-soft);margin-top:6px">
-          <span>ER: <strong>{ acc.engagementRate }%</strong></span>
-          <span>Likes: <strong>{ acc.averageLikes }</strong></span>
-          <span>Com.: <strong>{ acc.averageComments }</strong></span>
+          <span>ER: <strong>{{ acc.engagementRate }}%</strong></span>
+          <span>Likes: <strong>{{ acc.averageLikes }}</strong></span>
+          <span>Com.: <strong>{{ acc.averageComments }}</strong></span>
         </div>
       </button>
     </div>
@@ -269,12 +270,12 @@
         <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:16px">
           <div>
             <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-              <h2 style="font-size:24px">{ currentAccount.ownerName } · <span style="color:var(--gold)">{ currentAccount.atHandle }</span></h2>
+              <h2 style="font-size:24px">{{ currentAccount.ownerName }} · <span style="color:var(--gold)">{{ currentAccount.atHandle }}</span></h2>
               <a :href="'https://www.instagram.com/' + currentAccount.handle + '/'" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Abrir Instagram ↗</a>
               <a :href="'https://socialblade.com/instagram/user/' + currentAccount.handle" target="_blank" rel="noopener noreferrer" class="btn btn-sm">Fonte Social Blade ↗</a>
             </div>
-            <p style="color:var(--ink-soft);margin-top:4px">{ currentAccount.role } · <strong>Público-alvo:</strong> { currentAccount.targetAudience }</p>
-            <p style="color:var(--ink-faint);font-size:12px;margin-top:2px">Fonte verificada: { currentAccount.officialInsights30d.source } | Última leitura: { lastSyncTimeLabel }</p>
+            <p style="color:var(--ink-soft);margin-top:4px">{{ currentAccount.role }} · <strong>Público-alvo:</strong> {{ currentAccount.targetAudience }}</p>
+            <p style="color:var(--ink-faint);font-size:12px;margin-top:2px">Fonte verificada: {{ currentAccount.officialInsights30d.source }} | Última leitura: {{ lastSyncTimeLabel }}</p>
           </div>
           <button class="btn btn-sm" @click="openManualUpdate(currentAccount)">Registrar Insights / Novo Post</button>
         </div>
@@ -282,36 +283,36 @@
         <div class="grid-5">
           <div class="kpi-box">
             <div class="kpi-lbl">Seguidores Atuais</div>
-            <div class="kpi-val">{ currentAccount.followers.toLocaleString('pt-BR') }</div>
+            <div class="kpi-val">{{ currentAccount.followers.toLocaleString('pt-BR') }}</div>
             <div class="kpi-sub">
-              <span v-if="currentAccount.followersDelta > 0" class="delta-up">▲ +{ currentAccount.followersDelta } vs base</span>
-              <span v-else-if="currentAccount.followersDelta < 0" class="delta-down">▼ { currentAccount.followersDelta } (alerta perda)</span>
+              <span v-if="currentAccount.followersDelta > 0" class="delta-up">▲ +{{ currentAccount.followersDelta }} vs base</span>
+              <span v-else-if="currentAccount.followersDelta < 0" class="delta-down">▼ {{ currentAccount.followersDelta }} (alerta perda)</span>
               <span v-else class="delta-flat">Estável no período</span>
             </div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">Taxa de Engajamento (ER)</div>
-            <div class="kpi-val">{ currentAccount.engagementRate }%</div>
+            <div class="kpi-val">{{ currentAccount.engagementRate }}%</div>
             <div class="kpi-sub">
-              <span v-if="currentAccount.engagementRateDelta > 0" class="delta-up">▲ +{ currentAccount.engagementRateDelta } pp</span>
-              <span v-else-if="currentAccount.engagementRateDelta < 0" class="delta-down">▼ { currentAccount.engagementRateDelta } pp</span>
+              <span v-if="currentAccount.engagementRateDelta > 0" class="delta-up">▲ +{{ currentAccount.engagementRateDelta }} pp</span>
+              <span v-else-if="currentAccount.engagementRateDelta < 0" class="delta-down">▼ {{ currentAccount.engagementRateDelta }} pp</span>
               <span v-else class="delta-flat">Benchmark B2B: 1,2%+</span>
             </div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">Média Likes / Comentários</div>
-            <div class="kpi-val">{ currentAccount.averageLikes } / { currentAccount.averageComments }</div>
-            <div class="kpi-sub">{ currentAccount.mediaCount } posts publicados</div>
+            <div class="kpi-val">{{ currentAccount.averageLikes }} / {{ currentAccount.averageComments }}</div>
+            <div class="kpi-sub">{{ currentAccount.mediaCount }} posts publicados</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">Visualizações (30 dias)</div>
-            <div class="kpi-val">{ currentAccount.officialInsights30d.views30d.toLocaleString('pt-BR') }</div>
-            <div class="kpi-sub">{ currentAccount.officialInsights30d.nonFollowerViewsPct }% de não seguidores</div>
+            <div class="kpi-val">{{ currentAccount.officialInsights30d.views30d.toLocaleString('pt-BR') }}</div>
+            <div class="kpi-sub">{{ currentAccount.officialInsights30d.nonFollowerViewsPct }}% de não seguidores</div>
           </div>
           <div class="kpi-box">
             <div class="kpi-lbl">Interações &amp; Visitas (30d)</div>
-            <div class="kpi-val">{ currentAccount.officialInsights30d.interactions30d.toLocaleString('pt-BR') }</div>
-            <div class="kpi-sub">{ currentAccount.officialInsights30d.profileVisits30d } visitas ao perfil</div>
+            <div class="kpi-val">{{ currentAccount.officialInsights30d.interactions30d.toLocaleString('pt-BR') }}</div>
+            <div class="kpi-sub">{{ currentAccount.officialInsights30d.profileVisits30d }} visitas ao perfil</div>
           </div>
         </div>
 
@@ -320,7 +321,7 @@
           <div class="kpi-box">
             <div style="display:flex;justify-content:space-between;font-size:12.5px">
               <span>Descoberta Fora da Base (Não Seguidores)</span>
-              <strong style="color:var(--sage)">{ currentAccount.officialInsights30d.nonFollowerViewsPct }% Não Seguidores · { currentAccount.officialInsights30d.followerViewsPct }% Seguidores</strong>
+              <strong style="color:var(--sage)">{{ currentAccount.officialInsights30d.nonFollowerViewsPct }}% Não Seguidores · {{ currentAccount.officialInsights30d.followerViewsPct }}% Seguidores</strong>
             </div>
             <div class="bar-track">
               <div class="bar-fill" :style="{ width: currentAccount.officialInsights30d.nonFollowerViewsPct + '%', background: 'var(--sage)' }"></div>
@@ -329,7 +330,7 @@
           <div class="kpi-box">
             <div style="display:flex;justify-content:space-between;font-size:12.5px">
               <span>Tração por Formato (Reels vs Stories/Outros)</span>
-              <strong style="color:var(--gold)">{ currentAccount.officialInsights30d.reelsViewsPct }% Reels · { currentAccount.officialInsights30d.storiesViewsPct }% Stories</strong>
+              <strong style="color:var(--gold)">{{ currentAccount.officialInsights30d.reelsViewsPct }}% Reels · {{ currentAccount.officialInsights30d.storiesViewsPct }}% Stories</strong>
             </div>
             <div class="bar-track">
               <div class="bar-fill" :style="{ width: currentAccount.officialInsights30d.reelsViewsPct + '%', background: 'var(--gold)' }"></div>
@@ -342,14 +343,14 @@
           <div class="diag-box diag-high">
             <div class="chip chip-sage">ALTAS · O QUE ESTÁ TRACIONANDO</div>
             <ul class="diag-list">
-              <li v-for="h in currentAccount.highs" :key="h">{ h }</li>
+              <li v-for="h in currentAccount.highs" :key="h">{{ h }}</li>
             </ul>
           </div>
 
           <div class="diag-box diag-low">
             <div class="chip chip-clay">BAIXAS &amp; ALERTAS · ONDE ESTÁ VAZANDO</div>
             <ul class="diag-list">
-              <li v-for="l in currentAccount.lows" :key="l">{ l }</li>
+              <li v-for="l in currentAccount.lows" :key="l">{{ l }}</li>
             </ul>
           </div>
 
@@ -368,7 +369,7 @@
                   style="width:16px;height:16px;margin-top:2px;accent-color:var(--gold);flex-shrink:0"
                 />
                 <span :style="{ textDecoration: isTipDone(currentAccount.handle, idx) ? 'line-through' : 'none', opacity: isTipDone(currentAccount.handle, idx) ? 0.65 : 1 }">
-                  { tip }
+                  {{ tip }}
                 </span>
               </label>
             </div>
@@ -395,20 +396,20 @@
             <tbody>
               <tr v-for="a in accounts" :key="a.handle">
                 <td>
-                  <strong style="color:var(--gold);cursor:pointer" @click="selectedHandle = a.handle">{ a.atHandle }</strong>
-                  <div style="font-size:12px;color:var(--ink-faint)">{ a.ownerName }</div>
+                  <strong style="color:var(--gold);cursor:pointer" @click="selectedHandle = a.handle">{{ a.atHandle }}</strong>
+                  <div style="font-size:12px;color:var(--ink-faint)">{{ a.ownerName }}</div>
                 </td>
                 <td>
-                  <strong>{ a.followers.toLocaleString('pt-BR') }</strong>
+                  <strong>{{ a.followers.toLocaleString('pt-BR') }}</strong>
                   <div v-if="a.followersDelta !== 0" :class="a.followersDelta > 0 ? 'delta-up' : 'delta-down'">
-                    { a.followersDelta > 0 ? '+' + a.followersDelta : a.followersDelta }
+                    {{ a.followersDelta > 0 ? '+' + a.followersDelta : a.followersDelta }}
                   </div>
                 </td>
-                <td><strong>{ a.engagementRate }%</strong></td>
-                <td>{ a.averageLikes } likes · <strong>{ a.averageComments } com.</strong></td>
-                <td style="color:var(--sage)">{ a.highs[0] }</td>
-                <td style="color:var(--clay)">{ a.lows[0] }</td>
-                <td>{ a.tips[0] }</td>
+                <td><strong>{{ a.engagementRate }}%</strong></td>
+                <td>{{ a.averageLikes }} likes · <strong>{{ a.averageComments }} com.</strong></td>
+                <td style="color:var(--sage)">{{ a.highs[0] }}</td>
+                <td style="color:var(--clay)">{{ a.lows[0] }}</td>
+                <td>{{ a.tips[0] }}</td>
               </tr>
             </tbody>
           </table>
@@ -424,8 +425,8 @@
           <div style="display:grid;gap:12px">
             <div v-for="a in accountsSortedByEr" :key="a.handle">
               <div style="display:flex;justify-content:space-between;font-size:13px">
-                <span><strong>{ a.atHandle }</strong> ({ a.followers.toLocaleString('pt-BR') } seg)</span>
-                <strong style="color:var(--gold)">{ a.engagementRate }%</strong>
+                <span><strong>{{ a.atHandle }}</strong> ({{ a.followers.toLocaleString('pt-BR') }} seg)</span>
+                <strong style="color:var(--gold)">{{ a.engagementRate }}%</strong>
               </div>
               <div class="bar-track" style="height:12px">
                 <div class="bar-fill" :style="{ width: Math.min(100, a.engagementRate * 8.5) + '%', background: a.engagementRate >= 1.1 ? 'var(--sage)' : 'var(--clay)' }"></div>
@@ -439,8 +440,8 @@
           <div style="display:grid;gap:12px">
             <div v-for="a in accounts" :key="a.handle">
               <div style="display:flex;justify-content:space-between;font-size:13px">
-                <span><strong>{ a.atHandle }</strong> · { a.mediaCount } posts</span>
-                <strong>{ a.healthScore }/100</strong>
+                <span><strong>{{ a.atHandle }}</strong> · {{ a.mediaCount }} posts</span>
+                <strong>{{ a.healthScore }}/100</strong>
               </div>
               <div class="bar-track" style="height:12px">
                 <div class="bar-fill" :style="{ width: a.healthScore + '%', background: a.healthScore >= 70 ? 'var(--gold)' : (a.healthScore >= 55 ? 'var(--mist)' : 'var(--clay)') }"></div>
@@ -500,13 +501,13 @@
             </thead>
             <tbody>
               <tr v-for="snap in historyLog" :key="snap.id">
-                <td><strong>{ formatDateTime(snap.ts) }</strong></td>
-                <td><span class="chip">{ snap.origin }</span></td>
-                <td>{ snap.summary['lorenzogarcia.ia'] || '-' }</td>
-                <td>{ snap.summary['victorbianchini.ia'] || '-' }</td>
-                <td>{ snap.summary['gustavocalheiros.ia'] || '-' }</td>
-                <td>{ snap.summary['bianchini.hub'] || '-' }</td>
-                <td>{ snap.summary['isabianchini.ia'] || '-' }</td>
+                <td><strong>{{ formatDateTime(snap.ts) }}</strong></td>
+                <td><span class="chip">{{ snap.origin }}</span></td>
+                <td>{{ snap.summary['lorenzogarcia.ia'] || '-' }}</td>
+                <td>{{ snap.summary['victorbianchini.ia'] || '-' }}</td>
+                <td>{{ snap.summary['gustavocalheiros.ia'] || '-' }}</td>
+                <td>{{ snap.summary['bianchini.hub'] || '-' }}</td>
+                <td>{{ snap.summary['isabianchini.ia'] || '-' }}</td>
               </tr>
             </tbody>
           </table>
@@ -518,7 +519,7 @@
     <div v-if="editingAccount" class="modal-backdrop" @click.self="editingAccount = null">
       <div class="modal-panel" style="max-width:620px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-          <h3 style="font-size:19px">Atualizar Métricas · { editingAccount.atHandle }</h3>
+          <h3 style="font-size:19px">Atualizar Métricas · {{ editingAccount.atHandle }}</h3>
           <button class="btn btn-sm" @click="editingAccount = null">Fechar</button>
         </div>
         <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px">

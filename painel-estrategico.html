@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Painel Estratégico de Conteúdo & Vendas — Ecossistema Bianchini</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0c;
+      --bg-soft: #111116;
+      --card: rgba(20, 20, 26, 0.92);
+      --card-hover: rgba(28, 28, 36, 0.96);
+      --border: rgba(255, 255, 255, 0.09);
+      --border-gold: rgba(229, 182, 35, 0.42);
+      --ink: #f4f5f7;
+      --muted: #a1a1aa;
+      --dim: #71717a;
+      --gold: #E5B623;
+      --gold-soft: rgba(229, 182, 35, 0.12);
+      --blue: #2f6bff;
+      --blue-soft: rgba(47, 107, 255, 0.14);
+      --mint: #6ee7b7;
+      --mint-soft: rgba(110, 231, 183, 0.12);
+      --red: #f87171;
+      --red-soft: rgba(248, 113, 113, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(900px 520px at 90% -5%, rgba(229, 182, 35, 0.16), transparent 60%),
+        radial-gradient(850px 540px at 5% 100%, rgba(47, 107, 255, 0.14), transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+      background-size: auto, auto, 64px 64px, 64px 64px;
+      background-attachment: fixed;
+      color: var(--ink);
+      line-height: 1.55;
+      min-height: 100vh;
+      padding: 24px 16px 64px;
+    }
+
+    .container { max-width: 1160px; margin: 0 auto; }
+
+    h1, h2, h3, .font-display { font-family: 'Outfit', sans-serif; letter-spacing: -0.02em; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 28px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+      margin-bottom: 22px;
+    }
+
+    .hero-top {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-gold);
+      background: var(--gold-soft);
+      color: var(--gold);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 10px var(--gold);
+    }
+
+    .hero h1 { font-size: clamp(24px, 3.4vw, 36px); line-height: 1.12; margin-bottom: 8px; }
+    .hero h1 span { color: var(--gold); }
+    .hero-sub { color: var(--muted); font-size: 15px; max-width: 680px; }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      min-width: min(100%, 420px);
+    }
+
+    .kpi {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+    }
+
+    .kpi-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+    .kpi-val { font-family: 'Outfit', sans-serif; font-size: 22px; font-weight: 700; color: var(--gold); }
+    .kpi-note { font-size: 12px; color: var(--dim); }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .tab-btn:hover { color: var(--ink); border-color: rgba(255,255,255,0.22); }
+    .tab-btn.active {
+      background: var(--gold);
+      color: #0a0a0c;
+      border-color: var(--gold);
+      box-shadow: 0 0 24px rgba(229, 182, 35, 0.32);
+    }
+
+    .btn-ghost {
+      margin-left: auto;
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    .panel { display: none; animation: fadeIn 0.18s ease; }
+    .panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+
+    .card-hot { border-color: var(--border-gold); }
+
+    .sec-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .sec-title { font-size: 20px; font-weight: 700; }
+    .sec-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      border-radius: 14px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .check-item:hover { border-color: rgba(255,255,255,0.2); }
+    .check-item input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      accent-color: var(--gold);
+      flex-shrink: 0;
+    }
+    .check-item.done { border-color: rgba(110, 231, 183, 0.35); background: rgba(110, 231, 183, 0.05); }
+    .check-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .check-desc { font-size: 13px; color: var(--muted); }
+
+    .acc-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .acc-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .acc-handle { font-family: 'Outfit', sans-serif; font-size: 19px; font-weight: 700; }
+    .pill-status {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .acc-role { font-size: 13px; font-weight: 600; color: var(--gold); }
+    .acc-bio-box {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-size: 13px;
+    }
+    .acc-bio-box strong { display: block; color: var(--ink); margin-bottom: 4px; }
+    .acc-bio-box span { color: var(--muted); }
+
+    .btn-action {
+      appearance: none;
+      border: 1px solid var(--border-gold);
+      background: var(--gold-soft);
+      color: var(--gold);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: all 0.15s;
+    }
+    .btn-action:hover { background: var(--gold); color: #0a0a0c; }
+
+    .metric-bar { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .metric-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 9px 14px;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    .metric-btn.active { background: var(--blue-soft); border-color: var(--blue); color: #93bbfd; }
+
+    .metric-box {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .filters-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .field label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 6px; font-weight: 500; }
+    .field select, .field input {
+      width: 100%;
+      background: var(--bg-soft);
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+    }
+    .field select:focus, .field input:focus { border-color: var(--gold); }
+
+    .idea-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      transition: border-color 0.15s;
+    }
+    .idea-card:hover { border-color: rgba(229, 182, 35, 0.35); }
+    .idea-meta { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .idea-owner {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: var(--gold-soft);
+      color: var(--gold);
+    }
+    .idea-fmt { font-size: 12px; color: var(--muted); }
+    .idea-title { font-size: 17px; font-weight: 700; line-height: 1.3; margin: 10px 0; }
+    .idea-hook-box {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+    .idea-hook-lbl { font-size: 12px; font-weight: 600; color: var(--gold); margin-bottom: 4px; }
+    .idea-hook-txt { font-size: 13px; color: var(--ink); font-weight: 500; }
+    .idea-screen { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #93bbfd; margin-top: 8px; }
+    .idea-how { font-size: 13px; color: var(--muted); }
+    .idea-foot {
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .cta-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: var(--mint-soft);
+      color: var(--mint);
+    }
+
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 680px; }
+    th, td { text-align: left; padding: 13px 12px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: top; }
+    th { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.05em; }
+    td strong { color: var(--ink); }
+
+    .dossier-prose h3 { font-size: 18px; color: var(--gold); margin: 22px 0 8px; }
+    .dossier-prose p, .dossier-prose li { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+    .dossier-prose ul { padding-left: 20px; margin-bottom: 12px; }
+    .dossier-prose strong { color: var(--ink); }
+
+    @media print {
+      body { background: #ffffff; color: #111111; padding: 0; }
+      .tabs, .btn-ghost, .btn-action, .filters-bar { display: none !important; }
+      .panel { display: block !important; page-break-after: always; }
+      .card, .acc-card, .idea-card, .hero { background: #ffffff; border: 1px solid #d4d4d8; box-shadow: none; color: #111111; }
+      .hero h1 span, .kpi-val, .acc-role, .idea-hook-lbl, th { color: #92400e; }
+      .hero-sub, .sec-sub, .check-desc, .idea-how, .dossier-prose p, .dossier-prose li { color: #3f3f46; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header class="hero">
+      <div class="hero-top">
+        <div>
+          <div class="badge"><span class="badge-dot"></span>BIANCHNINI HUB + ACADEMY · PAINEL DOS SÓCIOS</div>
+          <h1>Plano Estratégico de <span>Conteúdo &amp; Vendas</span></h1>
+          <p class="hero-sub">
+            Guia direto para <strong>Victor</strong>, <strong>Gusta</strong> e <strong>Lorenzo</strong> atraírem empresários com caixa (contratos de R$ 20k a R$ 200k+) e alunos de mentoria ao mesmo tempo nas 4 contas.
+          </p>
+        </div>
+
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-label">Posts de Negócios</div>
+            <div class="kpi-val">+65%</div>
+            <div class="kpi-note">engajamento mediano</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Carrosséis 4:5</div>
+            <div class="kpi-val">+54%</div>
+            <div class="kpi-note">acima de vídeos</div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-label">Ideias Prontas</div>
+            <div class="kpi-val">30</div>
+            <div class="kpi-note">filtráveis por sócio</div>
+          </div>
+        </div>
+      </div>
+
+      <nav class="tabs">
+        <button class="tab-btn active" data-tab="resumo">1. Raio-X &amp; Arrume em 48h</button>
+        <button class="tab-btn" data-tab="formula">2. Regra 70/30 &amp; O Que Mais Rende</button>
+        <button class="tab-btn" data-tab="ideias">3. Banco das 30 Ideias</button>
+        <button class="tab-btn" data-tab="agenda">4. Calendário &amp; Tráfego Pago</button>
+        <button class="tab-btn" data-tab="dossie">5. Ler Dossiê Completo</button>
+        <a class="btn-ghost" href="./Dossie_Estrategico_Bianchini_2026.pdf" download style="text-decoration:none;display:inline-flex;align-items:center">Baixar Dossiê (.PDF)</a>
+      </nav>
+    </header>
+
+    <!-- ABA 1 -->
+    <section id="tab-resumo" class="panel active">
+      <div class="card card-hot">
+        <div class="sec-head">
+          <div>
+            <h2 class="sec-title">Resumo em 30 Segundos: O Que Descobrimos nos Dados Reais</h2>
+            <p class="sec-sub">Auditoria completa dos 4 perfis, 3 sites, 262 posts publicados, 608 comentários e benchmarks globais.</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="metric-box">
+            <div class="check-title" style="color:var(--gold)">1. Efeito especial dá view, mas atrai curioso sem caixa</div>
+            <p class="check-desc">Nos posts de cena Pixar/VFX, os comentários são de gente perguntando "qual faculdade faço pra começar?". Já os posts sobre <strong>sistemas reais para empresas</strong> têm a maior mediana da conta (49,5 likes e 56,5 interações).</p>
+          </div>
+          <div class="metric-box">
+            <div class="check-title" style="color:var(--gold)">2. Carrossel + Palavra no Direct = Máquina de Leads</div>
+            <p class="check-desc">Carrosséis rendem <strong>54% mais</strong> que vídeos normais (só saiu 1 nos últimos 50 posts). E vídeos curtos mostrando monitores reais com "Comenta PALAVRA" multiplicam em até <strong>11x</strong> os comentários.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sec-head">
+          <div>
+            <h2 class="sec-title">Checklist de 48 Horas: 4 Vazamentos Urgentes</h2>
+            <p class="sec-sub">Fica salvo automaticamente no seu navegador conforme você marcar.</p>
+          </div>
+          <span id="fix-counter" class="pill-status">0 de 4 concluídos</span>
+        </div>
+        <div class="grid-2" id="fixes-container"></div>
+      </div>
+
+      <div class="sec-head" style="margin: 8px 0 12px;">
+        <div>
+          <h2 class="sec-title">Papel Claro de Cada Conta + Bios Prontas para Copiar</h2>
+          <p class="sec-sub">Ordem obrigatória dos 3 Fixados em todas as contas: Fixado 1 (Quem sou e o que construo) · Fixado 2 (Caso antes/depois) · Fixado 3 (Campeão de "Comenta PALAVRA").</p>
+        </div>
+      </div>
+      <div class="grid-2" id="accounts-container"></div>
+    </section>
+
+    <!-- ABA 2 -->
+    <section id="tab-formula" class="panel">
+      <div class="card card-hot">
+        <div class="sec-head">
+          <div>
+            <h2 class="sec-title">A Regra 70/30: Como Vender para Milionários e Alunos no Mesmo Post</h2>
+            <p class="sec-sub">Como falar com o dono de empresa sem perder os alunos da Academy (e vice-versa).</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="metric-box">
+            <div class="badge" style="margin-bottom:10px">70% DO QUE VOCÊ FALA -> BOLSO DO EMPRESÁRIO</div>
+            <p class="check-title">Foque em dinheiro, tempo, vendas perdidas e segurança</p>
+            <p class="check-desc" style="margin-bottom:12px">Exemplo: "Eliminamos 4 planilhas, 3 mensalidades caras e a demora de 2 horas no WhatsApp dessa operação."</p>
+            <p class="check-desc"><strong style="color:var(--mint)">O que o Empresário pensa:</strong> "Isso resolve minha dor, mas é sério demais pra tentar sozinho. Vou contratar a Bianchini Hub."</p>
+          </div>
+          <div class="metric-box">
+            <div class="badge" style="margin-bottom:10px;border-color:rgba(47,107,255,.45);background:var(--blue-soft);color:#93bbfd">30% DO QUE VOCÊ MOSTRA -> SISTEMA POR DENTRO</div>
+            <p class="check-title">Deixe aparecer o painel real, os agentes e a segurança</p>
+            <p class="check-desc" style="margin-bottom:12px">Exemplo: Tela dividida mostrando o sistema escuro funcionando, o agente ouvindo áudio e o banco travado.</p>
+            <p class="check-desc"><strong style="color:#93bbfd">O que o Aluno pensa:</strong> "Olha o nível do sistema que eles entregam. Preciso entrar na Mentoria/Academy pra aprender isso."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sec-head">
+          <div>
+            <h2 class="sec-title">Qual Formato Mais Rende em Cada Métrica?</h2>
+            <p class="sec-sub">Clique no objetivo que você quer bater hoje:</p>
+          </div>
+        </div>
+        <div class="metric-bar" id="metric-buttons"></div>
+        <div class="metric-box" id="metric-detail"></div>
+      </div>
+
+      <div class="card">
+        <div class="sec-head">
+          <div>
+            <h2 class="sec-title">Checklist de 5 Segundos Antes de Apertar REC</h2>
+          </div>
+        </div>
+        <div class="grid-5">
+          <div class="metric-box"><div class="mono" style="font-size:12px;color:var(--gold)">01 · ABERTURA</div><div class="check-title" style="margin-top:6px">Zero "Oi pessoal"</div><p class="check-desc">Comece já no 1º segundo com um número ou dor real (até 12 palavras).</p></div>
+          <div class="metric-box"><div class="mono" style="font-size:12px;color:var(--gold)">02 · TELA</div><div class="check-title" style="margin-top:6px">Até 6 palavras</div><p class="check-desc">Manchete curta no centro da tela pra quem assiste no mudo entender na hora.</p></div>
+          <div class="metric-box"><div class="mono" style="font-size:12px;color:var(--gold)">03 · PROVA</div><div class="check-title" style="margin-top:6px">Sistema visível</div><p class="check-desc">Sempre mostre a tela funcionando, o iPad ou os 2 monitores reais.</p></div>
+          <div class="metric-box"><div class="mono" style="font-size:12px;color:var(--gold)">04 · RITMO</div><div class="check-title" style="margin-top:6px">Troca a cada 3s</div><p class="check-desc">Leve zoom ou troca da imagem de apoio para a vista nunca cansar.</p></div>
+          <div class="metric-box"><div class="mono" style="font-size:12px;color:var(--gold)">05 · CHAMADA</div><div class="check-title" style="margin-top:6px">1 Ação só</div><p class="check-desc">Termine sempre com "Comenta PALAVRA que eu te mando no Direct".</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 3 -->
+    <section id="tab-ideias" class="panel">
+      <div class="card">
+        <div class="sec-head">
+          <div>
+            <h2 class="sec-title">Catálogo das 30 Ideias Prontas para Gravar</h2>
+            <p class="sec-sub">Filtre pela conta de cada sócio ou pelo objetivo e copie o roteiro em 1 clique.</p>
+          </div>
+          <span id="ideas-count" class="pill-status">30 ideias</span>
+        </div>
+        <div class="filters-bar">
+          <div class="field">
+            <label for="f-owner">Filtrar por Quem Posta</label>
+            <select id="f-owner">
+              <option value="ALL">Todas as 4 contas</option>
+              <option value="Victor">@victorbianchini.ia (Victor)</option>
+              <option value="Gusta">@gustavocalheiros.ia (Gusta)</option>
+              <option value="Lorenzo">@lorenzogarcia.ia (Lorenzo)</option>
+              <option value="Hub">@bianchini.hub (Holding)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-goal">Filtrar por Objetivo / Bloco</label>
+            <select id="f-goal">
+              <option value="ALL">Todos os blocos</option>
+              <option value="Empresários High-Ticket">Bloco A · Contratos Grandes (Empresários)</option>
+              <option value="Mentoria & Academy">Bloco B · Mentoria, Aulas &amp; Academy</option>
+              <option value="Ferramentas Grátis">Bloco C · Ferramentas Grátis (Iscas Virais)</option>
+              <option value="Trends Virais">Bloco D · Trends Virais (IG + TikTok)</option>
+              <option value="Autoral">Blocos E &amp; F · Séries Autorais + Mesa dos Sócios</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-search">Buscar palavra-chave</label>
+            <input id="f-search" type="text" placeholder="Ex: WhatsApp, carrossel, construtora, mesa..." />
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2" id="ideas-container"></div>
+    </section>
+
+    <!-- ABA 4 -->
+    <section id="tab-agenda" class="panel">
+      <div class="card">
+        <div class="sec-head">
+          <div>
+            <h2 class="sec-title">Calendário Semanal Enxuto (Sem Burnout e Sem Vídeo Clonado)</h2>
+            <p class="sec-sub">Dica de crescimento rápido: todo vídeo do Lorenzo e do Gusta deve subir também no TikTok no mesmo dia.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Dia</th>
+                <th>@bianchini.hub</th>
+                <th>@victorbianchini.ia</th>
+                <th>@gustavocalheiros.ia</th>
+                <th>@lorenzogarcia.ia (IG + TikTok)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Segunda</strong></td>
+                <td>Carrossel Executivo (Custos ou Segurança)</td>
+                <td>Vídeo caminhando pós-reunião</td>
+                <td>Análise sincera de site ou marca</td>
+                <td>Episódio Série 1 a 10 (30s)</td>
+              </tr>
+              <tr>
+                <td><strong>Terça</strong></td>
+                <td style="color:var(--dim)">—</td>
+                <td>Carrossel "Roube a Estrutura"</td>
+                <td style="color:var(--dim)">—</td>
+                <td>Meia-Tela mostrando sistema real</td>
+              </tr>
+              <tr>
+                <td><strong>Quarta</strong></td>
+                <td><strong>Antes/Depois de Empresa</strong> (Collab)</td>
+                <td>Vídeo das 7 Ferramentas da Semana</td>
+                <td>Recebe Collab do Antes/Depois</td>
+                <td>Carrossel prático de 8 telas</td>
+              </tr>
+              <tr>
+                <td><strong>Quinta</strong></td>
+                <td style="color:var(--dim)">—</td>
+                <td>Calculadora Financeira / Custo</td>
+                <td>Vídeo curto 2 Monitores (21s)</td>
+                <td><strong>2 Monitores ou Demo</strong> (Collab Victor)</td>
+              </tr>
+              <tr>
+                <td><strong>Sexta</strong></td>
+                <td><strong>"A Mesa dos Sócios"</strong> (45s juntos)</td>
+                <td>O que a novidade da semana muda no caixa</td>
+                <td>Carrossel de páginas que vendem</td>
+                <td>Teste de segurança / entrega real</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="sec-head">
+          <div>
+            <h2 class="sec-title">3 Regras Simples para Tráfego Pago (Sem Queimar Dinheiro)</h2>
+          </div>
+        </div>
+        <div class="grid-3">
+          <div class="metric-box">
+            <div class="mono" style="font-size:12px;color:var(--gold);margin-bottom:6px">REGRA 01 · ESPERE 72 HORAS</div>
+            <div class="check-title">Só patrocine o que já ganhou no orgânico</div>
+            <p class="check-desc">Se em 3 dias um post deu o dobro de comentários ou envios por Direct, impulsione exatamente esse post mantendo a prova social.</p>
+          </div>
+          <div class="metric-box">
+            <div class="mono" style="font-size:12px;color:var(--gold);margin-bottom:6px">REGRA 02 · FILTRO NOS 3 SEGUNDOS</div>
+            <div class="check-title">Deixe a frase inicial filtrar quem tem caixa</div>
+            <p class="check-desc">Comece falando a dor de quem já tem operação ("Se sua empresa tem mais de 10 funcionários..."). Curioso passa reto e o algoritmo entrega para donos.</p>
+          </div>
+          <div class="metric-box">
+            <div class="mono" style="font-size:12px;color:var(--gold);margin-bottom:6px">REGRA 03 · ATALHO NO LINKEDIN</div>
+            <div class="check-title">Vídeos dos sócios direto para CEOs</div>
+            <p class="check-desc">Suba os melhores vídeos executivos do Victor, do Lorenzo e da Mesa dos Sócios no LinkedIn patrocinando por cargo: Sócio, CEO e Diretor (11–500 funcionários).</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABA 5 -->
+    <section id="tab-dossie" class="panel">
+      <div class="card dossier-prose">
+        <h2 class="sec-title" style="font-size:24px;margin-bottom:6px">Dossiê Completo de Leitura Rápida — Ecossistema Bianchini</h2>
+        <p>Versão integral consolidada em linguagem simples para alinhamento entre Victor, Gusta, Lorenzo e equipe.</p>
+
+        <h3>1. Por Que Mudar a Rota Agora?</h3>
+        <ul>
+          <li><strong>O que atrai curiosos vs. o que atrai clientes:</strong> Vídeos puros de efeito visual/animação acumulam visualizações de estudantes iniciantes, mas têm baixa conversão em contratos de R$ 20 mil a R$ 200 mil+. Já os conteúdos de <strong>software próprio, automação empresarial e cases reais</strong> batem 65% mais engajamento mediano na conta do Victor.</li>
+          <li><strong>O formato esquecido que mais converte executivos:</strong> Carrosséis 4:5 entregam 54% mais curtidas na mediana histórica e altíssima taxa de salvamento, pois empresários navegam no mudo entre reuniões e encaminham lâminas financeiras para os sócios.</li>
+          <li><strong>O efeito multiplicador de 1 palavra no comentário:</strong> Em contas enxutas de altíssima conversão (@riki.bosso, 29k seguidores, 15,5% de engajamento), mostrar 2 monitores reais em 21 segundos com chamada única de comentário gerou 9.860 comentários num único vídeo.</li>
+        </ul>
+
+        <h3>2. Os 4 Ajustes Imediatos</h3>
+        <ul>
+          <li><strong>Corrigir links quebrados nos sites:</strong> Trocar o link de rodapé que hoje aponta para <code>@ogustacriativo</code> (indisponível) em <code>bianchinihub.com</code> e <code>bianchiniacademy.pro</code> para <code>@bianchini.hub</code> e <code>@victorbianchini.ia</code>.</li>
+          <li><strong>Descongelar a @bianchini.hub:</strong> Sem publicações desde 12/12/2025. Reabrir com o vídeo Manifesto ("Ninguém cresce em pedaços") + o quadro fixo de sexta-feira <strong>A Mesa dos Sócios</strong>.</li>
+          <li><strong>Zero vídeo MP4 repetido cru entre contas:</strong> Subir o mesmo arquivo derruba o alcance para menos de 10 curtidas nas contas secundárias. Usar Collab oficial 1x/semana e gravações próprias de cada sócio.</li>
+          <li><strong>Protagonismo real no @lorenzogarcia.ia e @gustavocalheiros.ia:</strong> 80% da grade dos próximos 30 dias deve trazer a voz, o rosto e os monitores reais do próprio Lorenzo e do próprio Gusta.</li>
+        </ul>
+
+        <h3>3. Posicionamento Individual sem Canibalização</h3>
+        <ul>
+          <li><strong>@bianchini.hub:</strong> Holding empresarial (cases antes/depois, segurança de dados/LGPD, TCO de software sob medida e A Mesa dos Sócios).</li>
+          <li><strong>@victorbianchini.ia:</strong> Fundador, estrategista C-Level e criador do Método CRIAR (contas financeiras no iPad, visão pós-reunião, radar tech e lançamentos).</li>
+          <li><strong>@gustavocalheiros.ia:</strong> Diretor criativo caçador de visual amador (análise sincera de páginas reais, redesign de alto ticket, comerciais nível cinema em 48h e funis).</li>
+          <li><strong>@lorenzogarcia.ia:</strong> Sócio engenheiro construtor (agentes em paralelo, sistemas nascendo ao vivo nos monitores, testes reais de segurança e vídeo compilado em código — sempre postando em Instagram Reels + TikTok).</li>
+        </ul>
+
+        <h3>4. Onde Estão Todas as 30 Ideias?</h3>
+        <p>Acesse a aba <strong>"3. Banco das 30 Ideias"</strong> no topo desta página para filtrar por sócio, buscar temas e copiar os roteiros prontos para o WhatsApp.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    const FIXES = [
+      { id: "fix1", title: "1. Corrigir link quebrado nos sites oficiais", desc: "Trocar @ogustacriativo nos rodapés de bianchinihub.com e bianchiniacademy.pro para @bianchini.hub e @victorbianchini.ia." },
+      { id: "fix2", title: "2. Descongelar a @bianchini.hub", desc: "Conta parada desde 12/12/2025. Publicar o Manifesto das 5 frentes integradas + Episódio #01 de 'A Mesa dos Sócios'." },
+      { id: "fix3", title: "3. Parar de subir o mesmo MP4 repetido", desc: "Não subir o mesmo arquivo cru nas 4 contas. Usar Collab oficial 1x/semana e vídeos próprios por sócio." },
+      { id: "fix4", title: "4. Dar rosto e voz própria a Lorenzo e Gusta", desc: "80% dos próximos posts de @lorenzogarcia.ia e @gustavocalheiros.ia mostrando a mesa, a voz e o rosto de cada um." }
+    ];
+
+    const ACCOUNTS = [
+      {
+        handle: "@bianchini.hub",
+        status: "665 seg · Parada desde dez/2025",
+        role: "A Vitrine Empresarial (80% Contratos Grandes)",
+        desc: "Estudos de caso antes/depois, segurança de dados e o quadro semanal 'A Mesa dos Sócios' com vocês 3 juntos.",
+        nameField: "Bianchini Hub | Software, Agentes IA & Marca",
+        bio: "Sistemas sob medida, agentes de atendimento 24h, segurança de dados e posicionamento para empresas que escalam. Diagnóstico executivo ↓"
+      },
+      {
+        handle: "@victorbianchini.ia",
+        status: "21,5 mil seg · Motor de alcance",
+        role: "O Fundador & Estrategista (50% Empresas / 50% Academy)",
+        desc: "Contas financeiras no iPad, visão executiva saindo de reuniões, radar de ferramentas e Método CRIAR.",
+        nameField: "Victor Bianchini | Sistemas com IA & Negócios",
+        bio: "Fundador @bianchini.hub & Bianchini Academy (+11 anos construindo marcas e softwares). Implemento na sua empresa ou te ensino do zero ↓"
+      },
+      {
+        handle: "@gustavocalheiros.ia",
+        status: "1.583 seg · Foco em direção criativa",
+        role: "O Diretor Criativo Anti-Amadorismo (50% Marcas / 50% Designers)",
+        desc: "Tira a cara barata de sites, sistemas e anúncios. Faz análises sinceras de páginas e comerciais nível cinema.",
+        nameField: "Gustavo Calheiros | Design Premium, Funis & IA",
+        bio: "Direção criativa @bianchini.hub. Tiro a cara de amador do seu site, sistema ou marca para vender alto valor ↓"
+      },
+      {
+        handle: "@lorenzogarcia.ia",
+        status: "57 seg · Decolagem IG + TikTok",
+        role: "O Sócio Engenheiro Construtor (Sistemas ao Vivo)",
+        desc: "Mão na massa real: agentes trabalhando juntos nos monitores, sistemas nascendo do zero e testes de segurança.",
+        nameField: "Lorenzo Garcia | Engenharia de Sistemas & Agentes IA",
+        bio: "Engenharia @bianchini.hub. Construo softwares, agentes autônomos e automações que rodam empresas de verdade ↓"
+      }
+    ];
+
+    const METRICS = [
+      { id: "views", label: "Muitas Visualizações", format: "Vídeo curto de impacto visual (15s a 24s)", why: "Alta taxa de conclusão + repetição automática enquanto o público tenta ler os detalhes nos seus monitores.", ex: "Ideia #16 — Celular filmando de trás os 2 monitores no escuro construindo ao vivo em 21s." },
+      { id: "leads", label: "Chuva de Comentários & Direct", format: "Vídeo com presente prático (25s a 45s) + Comenta PALAVRA", why: "Digitar 1 palavra leva 2 segundos e entrega na hora uma calculadora, auditoria ou checklist útil no Direct.", ex: "Ideia #11 — Detector gratuito que dá nota pro site em 5 segundos ('Comenta NOTA')." },
+      { id: "saves", label: "Muitos Salvamentos", format: "Carrossel 4:5 de 8 a 10 telas", why: "Carrosséis têm mediana 54% maior que vídeos na conta do Victor. O empresário salva para abrir no computador.", ex: "Ideia #06 ('Roube a arquitetura do agente') e Ideia #15 ('As 8 travas de segurança')." },
+      { id: "shares", label: "Sócio Mandando pra Sócio", format: "Conta financeira na ponta do lápis ou Reforma de Empresa Real", why: "Compartilhamento via Direct é o sinal nº 1 do Instagram hoje para alcançar empresários fora da base.", ex: "Ideia #01 ('7 softwares alugados = R$ 180 mil perdidos') e Ideia #17 ('Reforma de construtora de R$ 4M')." },
+      { id: "b2b", label: "Contratos de R$ 20k–200k+", format: "Bastidor real de entrega + Caminhada pós-reunião + Mesa dos Sócios", why: "5.000 views de donos de empresa batem 500.000 views de curiosos porque eliminam o medo de risco.", ex: "Ideia #04 ('Saindo da reunião de uma empresa de R$ 30M') e Ideia #30 ('A Mesa dos Sócios')." }
+    ];
+
+    const IDEAS = [
+      { n: 1, owner: ["Victor", "Hub"], goal: "Empresários High-Ticket", format: "iPad escuro + Tela (42s)", title: "O Imposto Invisível dos 7 Softwares Alugados", hook: "Sua empresa paga quinze mil por mês em sete sistemas que não conversam e ainda paga gente pra copiar planilha.", screen: "7 SAAS CAROS = PLANILHA DE LUXO", how: "Mostra R$ 180 mil/ano perdidos em mensalidades -> corta para painel único integrando vendas, financeiro e notas sem taxa por usuário.", cta: "ATIVO" },
+      { n: 2, owner: ["Lorenzo", "Hub"], goal: "Empresários High-Ticket", format: "Tela dividida cronometrada (34s)", title: "O Teste das 23h no WhatsApp Comercial", hook: "Mandamos um cliente de cinquenta mil reais às onze da noite pra duas empresas: uma perdeu a venda, a outra agendou em onze segundos.", screen: "LEAD DE R$ 50 MIL ÀS 23H14", how: "Compara atendimento mudo até as 9h da manhã vs. agente ouvindo áudio, checando agenda real e marcando reunião na hora.", cta: "COMERCIAL" },
+      { n: 3, owner: ["Lorenzo", "Victor"], goal: "Empresários High-Ticket", format: "Teste real na tela (38s)", title: "Invadimos Nosso Próprio Sistema Antes da Entrega", hook: "Nove em cada dez sistemas feitos às pressas com IA vazam o banco inteiro de clientes com três linhas no navegador.", screen: "SEU SISTEMA VAZA EM 3 LINHAS", how: "Mostra num ambiente de teste como um app amador expõe dados e depois mostra as travas de proteção da Bianchini Dev.", cta: "BLINDAGEM" },
+      { n: 4, owner: ["Victor"], goal: "Empresários High-Ticket", format: "Caminhando com lapela (40s)", title: "Saindo da Reunião: O Erro de R$ 90 Mil/Mês", hook: "Acabei de sair de uma reunião com uma empresa que fatura trinta milhões por ano e eles iam cometer um erro caríssimo.", screen: "ERRO EM OPERAÇÃO DE R$ 30M/ANO", how: "Conta que iam contratar 6 pessoas pro administrativo quando bastava integrar pedido, nota fiscal e financeiro em 3 semanas.", cta: "OPERACAO" },
+      { n: 5, owner: ["Lorenzo", "Hub"], goal: "Empresários High-Ticket", format: "Meia-tela comparativa (32s)", title: "Por Que o Sistema do Caixa Trava o Computador?", hook: "Por que o sistema tradicional trava o computador da sua equipe usando dois gigas de memória enquanto esse aqui usa vinte e quatro megas?", screen: "2.100 MB vs. 24 MB DE MEMÓRIA", how: "Compara programa lento tradicional vs. sistema leve abrindo na hora sem precisar trocar os computadores da empresa.", cta: "NATIVO" },
+      { n: 6, owner: ["Victor"], goal: "Mentoria & Academy", format: "Carrossel 9 telas (4:5)", title: "Roube a Estrutura em 4 Camadas do Nosso Agente 24h", hook: "99% usam IA com amnésia: toda conversa começa do zero. Veja como nosso agente lembra de tudo.", screen: "ROUBE A ARQUITETURA DO AGENTE 24/7", how: "Diagramas simples mostrando memória entre sessões, ferramentas e conferência automática + resumo printável na tela 8.", cta: "ALFRED" },
+      { n: 7, owner: ["Lorenzo"], goal: "Mentoria & Academy", format: "Meia-tela com terminal (44s)", title: "Por Que Seu Projeto com IA Quebra na Sexta às 18h", hook: "Você tá construindo com IA do jeito errado, e não é culpa sua: ninguém te ensinou a dar limites pro agente.", screen: "IA SEM MÉTODO = PROJETO QUEBRADO", how: "Mostra como travar arquivos prontos, avançar de 3 em 3 etapas e testar antes de salvar usando o Método CRIAR.", cta: "CRIAR" },
+      { n: 8, owner: ["Victor", "Gusta"], goal: "Mentoria & Academy", format: "Comparativo de proposta (48s)", title: "De Freelancer de R$ 1.500 para Projetos de R$ 25 Mil", hook: "Enquanto você cobra mil e quinhentos reais num site solto, tem empresa pagando vinte e cinco mil pelo sistema completo.", screen: "SITE DE R$ 1.500 vs. SISTEMA DE R$ 25K", how: "Mostra os 4 itens do pacote completo (visual forte + WhatsApp IA + painel de clientes + cobrança automática) entregue em 15 dias.", cta: "ESCALA" },
+      { n: 9, owner: ["Victor"], goal: "Mentoria & Academy", format: "Visual 3D dinâmico (36s)", title: "As 7 Ferramentas Abertas pelas Gigantes de Tech", hook: "Sete gigantes de tecnologia acabaram de liberar de graça ferramentas que antes custavam uma fortuna por mês.", screen: "7 FERRAMENTAS ABERTAS PELAS BIG TECHS", how: "Passa pelas 7 ferramentas verificadas explicando em 1 frase qual serviço você pode vender com cada uma.", cta: "GITHUB" },
+      { n: 10, owner: ["Lorenzo"], goal: "Mentoria & Academy", format: "Carrossel 8 telas + Vídeo (26s)", title: "Como Cortar 80% da Conta de IA Sem Perder Qualidade", hook: "Usar a IA mais cara do mercado pra responder tarefa simples é rasgar dinheiro todo mês.", screen: "-80% DE CUSTO NA CONTA DE IA", how: "Regra prática: modelo barato pra triagem rápida, modelo topo de linha só pra decisão difícil e modelo local pra sigilo.", cta: "ROTA" },
+      { n: 11, owner: ["Gusta", "Victor"], goal: "Ferramentas Grátis", format: "Demo ao vivo na tela (30s)", title: "Detector de Cara de IA Barata (Teste em 5 Segundos)", hook: "Criamos um detector gratuito que analisa qualquer site em cinco segundos e mostra por que ele passa cara de amador.", screen: "TESTE SEU SITE NO DETECTOR", how: "Cola site genérico (nota 34/100, apontando roxo clichê e botão escondido) e depois testa bianchinihub.com (96/100).", cta: "NOTA" },
+      { n: 12, owner: ["Hub", "Victor", "Lorenzo"], goal: "Ferramentas Grátis", format: "Bastidor em 2 câmeras (45s)", title: "Protótipo Funcionando Durante a Primeira Reunião", hook: "Agência comum pede trinta dias só pra te mandar um orçamento em PDF. A gente monta o protótipo durante a reunião.", screen: "30 DIAS DE PDF vs. SISTEMA NA REUNIÃO", how: "Victor mapeia a dor com o cliente enquanto Lorenzo sobe o sistema e Gusta aplica a marca ao vivo na mesma call.", cta: "BRIEFING" },
+      { n: 13, owner: ["Victor"], goal: "Ferramentas Grátis", format: "Simulação financeira (28s)", title: "Calculadora do Ctrl+C: Quanto Custa o Retrabalho", hook: "Se cinco pessoas da sua equipe gastam duas horas por dia copiando dados, você perde duzentos mil reais por ano.", screen: "QUANTO CUSTA O CTRL+C DA EQUIPE?", how: "Preenche funcionários e horas perdidas na calculadora ao vivo mostrando em quantas semanas a automação se paga.", cta: "CALCULO" },
+      { n: 14, owner: ["Lorenzo"], goal: "Ferramentas Grátis", format: "Desafio cronometrado (38s)", title: "De um Áudio de 40s no WhatsApp ao Sistema no Ar", hook: "O Victor me mandou um áudio de quarenta segundos com uma dor real de cliente e eu cronometrei até subir o sistema.", screen: "DE UM ÁUDIO DE 40S AO SISTEMA NO AR", how: "Mostra 3s do áudio -> transcrição -> banco seguro -> painel escuro -> teste de falha -> sistema publicado.", cta: "DEPLOY" },
+      { n: 15, owner: ["Hub", "Lorenzo"], goal: "Ferramentas Grátis", format: "Carrossel 10 telas (4:5)", title: "As 8 Travas que Separam Brinquedo de Software Sério", hook: "Seu sistema aguenta 1.000 clientes pagando ao mesmo tempo sem duplicar cobrança nem cair?", screen: "SEU SISTEMA AGUENTA 1.000 CLIENTES?", how: "Explica de forma simples proteção contra PIX duplicado, bloqueio de robôs, backup testado e isolamento por cliente.", cta: "PRODUCAO" },
+      { n: 16, owner: ["Lorenzo", "Gusta"], goal: "Trends Virais", format: "2 Monitores no escuro (21s)", title: "Trend Mundial dos 2 Monitores Reais Funcionando", hook: "(Sem fala: som real de teclado + música tensa baixa + etiquetas fixas na tela inteira)", screen: "Claude Code + Bianchini Hub", how: "Celular filmando de trás monitor principal com página/sistema incrível ganhando vida e tela de baixo rodando código.", cta: "ESTUDIO" },
+      { n: 17, owner: ["Hub", "Gusta"], goal: "Trends Virais", format: "Antes vs. Depois rápido (32s)", title: "Reconstruímos o Site e Atendimento de uma Construtora", hook: "Essa construtora vende imóveis de quatro milhões de reais com um site que demora nove segundos pra abrir no celular.", screen: "IMÓVEL DE R$ 4M NUM SITE LENTO", how: "Mostra a lentidão atual -> corta para vitrine de luxo instantânea + concierge IA agendando visita no WhatsApp.", cta: "REFORMA" },
+      { n: 18, owner: ["Gusta"], goal: "Trends Virais", format: "Rosto + Mouse na tela (38s)", title: "Análise Sincera: 4 Erros Que Matam a Venda Desse Site", hook: "O sistema desse empresário é ótimo, mas a página dele espanta clientes grandes nos primeiros três segundos.", screen: "4 ERROS QUE DERRUBAM SEU PREÇO", how: "Aponta com respeito 4 falhas de clareza/visual e revela em 8 segundos como fica a dobra principal refeita.", cta: "ANALISE" },
+      { n: 19, owner: ["Lorenzo"], goal: "Trends Virais", format: "Série de 10 episódios (30s)", title: "Dia 1 de 10 Construindo uma Operação 100% Automática", hook: "Dia um de dez construindo do zero a máquina comercial de uma empresa pra funcionar vinte e quatro horas sem planilha.", screen: "DIA 01/10 — OPERAÇÃO AUTOMÁTICA", how: "Efeito novela no IG e TikTok: cada dia conecta uma peça nova (banco, WhatsApp, agenda, proposta, PIX, nota e painel).", cta: "SERIE" },
+      { n: 20, owner: ["Victor"], goal: "Trends Virais", format: "Reação executiva (30s)", title: "Traduzindo a Novidade da Semana pro Caixa do Dono", hook: "Todo mundo tá falando desse lançamento de hoje, mas quase ninguém explicou onde está o dinheiro real pra sua empresa.", screen: "O QUE ISSO MUDA NO SEU CAIXA", how: "1) O que mudou sem jargão; 2) Qual setor da empresa ficou 5x mais rápido; 3) Qual armadilha evitar.", cta: "RADAR" },
+      { n: 21, owner: ["Lorenzo"], goal: "Autoral", format: "Vídeo Fixado #1 (36s)", title: "Manifesto Lorenzo: 4 Meses de Equipe vs. 7 Dias", hook: "Uma equipe tradicional leva quatro meses pra entregar o sistema que eu coloco no ar em uma semana comandando agentes.", screen: "4 MESES DE EQUIPE vs. 7 DIAS", how: "Apresenta quem é o Lorenzo na Bianchini Hub mostrando sistemas reais rodando e convidando a seguir os bastidores.", cta: "SEGUIR (PIN #1)" },
+      { n: 22, owner: ["Lorenzo"], goal: "Autoral", format: "Câmera sobre o ombro (25s)", title: "Bastidor: 3 Agentes Trabalhando Juntos na Minha Tela", hook: "Enquanto um agente pesquisa a documentação, o segundo escreve o sistema e o terceiro tenta achar falhas no meu código.", screen: "3 AGENTES TRABALHANDO EM PARALELO", how: "Mostra na prática como coordenar 3 janelas ao mesmo tempo sem um agente sobrescrever o trabalho do outro.", cta: "ORQUESTRA" },
+      { n: 23, owner: ["Lorenzo"], goal: "Autoral", format: "Meia-tela de testes (33s)", title: "'Funcionou Aqui' Não Vale: Tentando Quebrar Meu Sistema", hook: "Se o programador diz que tá tudo pronto só porque abriu no computador dele, sua empresa tem uma bomba-relógio.", screen: "'FUNCIONOU AQUI' NÃO É PRODUÇÃO", how: "Executa ao vivo 3 testes: entrar sem senha (bloqueado), ler dado de outro cliente (vazio) e clique duplo em pagar.", cta: "PROVA" },
+      { n: 24, owner: ["Lorenzo"], goal: "Autoral", format: "Antes vs. Depois (30s)", title: "De 30 Comprovantes no WhatsApp para Painel em 3s", hook: "O dono dessa empresa recebia trinta comprovantes soltos no WhatsApp todo dia e nunca sabia quanto sobrava no mês.", screen: "30 COMPROVANTES NO ZAP -> PAINEL LIMPO", how: "Manda foto de nota no grupo -> agente extrai valor/CNPJ sozinho e atualiza o painel de lucro do dono na hora.", cta: "CAIXA" },
+      { n: 25, owner: ["Lorenzo"], goal: "Autoral", format: "Código + Vídeo lado a lado (27s)", title: "Este Vídeo Não Passou por Editor: Foi Feito em Código", hook: "Esse vídeo que você tá assistindo agora não passou por nenhum editor humano: ele foi montado inteiro por código.", screen: "VÍDEO DE ESTÚDIO FEITO EM CÓDIGO", how: "Mostra seu programa sincronizando voz, margens de segurança e renderização 3D automática na placa de vídeo.", cta: "PIPELINE" },
+      { n: 26, owner: ["Gusta"], goal: "Autoral", format: "Comparativo visual (29s)", title: "A Estrelinha Proibida que Derruba seu Preço pela Metade", hook: "Se o seu site ou sistema usa aquela estrelinha roxa brilhante pra dizer que tem IA, o mercado já sente amadorismo.", screen: "O ÍCONE QUE DERRUBA SEU PREÇO", how: "Compara 3 páginas genéricas com 3 marcas de elite mostrando como ícones próprios e contraste escuro valorizam 10x.", cta: "IDENTIDADE" },
+      { n: 27, owner: ["Gusta", "Hub"], goal: "Autoral", format: "Filme + Bastidor (24s)", title: "Comercial de Cinema de R$ 120 Mil Dirigido em 48 Horas", hook: "Uma campanha desse nível custava cento e vinte mil reais e quarenta dias de set; olha como dirigimos em dois dias.", screen: "FILME DE R$ 120 MIL EM 48 HORAS", how: "Abre com 6s de comercial impecável e mostra a direção de arte por trás que separa cinema comercial de vídeo amador.", cta: "FILME" },
+      { n: 28, owner: ["Gusta"], goal: "Autoral", format: "Carrossel 8 telas (4:5)", title: "Bonito Não Paga Boleto: Página que Vende Alto Valor", hook: "Por que sites lindos continuam sem gerar nenhuma reunião comercial? Falta ordem estratégica na página.", screen: "A PÁGINA QUE VENDE ALTO TICKET", how: "Disseca bloco a bloco: promessa em 2s, prova real no topo, diagnóstico interativo e botão direto sem atrito.", cta: "FUNIL" },
+      { n: 29, owner: ["Hub", "Victor", "Gusta", "Lorenzo"], goal: "Autoral", format: "Manifesto Fixado #1 (38s)", title: "Reabertura @bianchini.hub: Ninguém Cresce em Pedaços", hook: "Sua empresa contrata uma agência que não entende de sistema, uma fábrica que não entende de vendas e você carrega o caos.", screen: "UM ECOSSISTEMA. CINCO FRENTES.", how: "Apresenta Creative, Dev, Academy, Finance e Care funcionando juntos para empresas que querem escalar inteiras.", cta: "ECOSSISTEMA" },
+      { n: 30, owner: ["Hub", "Victor", "Gusta", "Lorenzo"], goal: "Autoral", format: "3 Sócios na Mesa (45s)", title: "Quadro Fixo: A Mesa dos Sócios (TI Interna vs. Sob Medida)", hook: "Um empresário perguntou hoje na mesa: vale mais montar equipe própria de tecnologia ou contratar construção sob medida?", screen: "EQUIPE INTERNA vs. SOB MEDIDA", how: "Victor traz o custo e os 6 meses de espera; Lorenzo mostra o risco técnico; Gusta mostra o ganho de lançar pronto no Dia 1.", cta: "CONSELHO" }
+    ];
+
+    function copyToClipboard(text, btn) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text);
+      } else {
+        const ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+      }
+      const prev = btn.textContent;
+      btn.textContent = "Copiado!";
+      setTimeout(() => { btn.textContent = prev; }, 1600);
+    }
+
+    // Checklist persistente
+    const fixesContainer = document.getElementById("fixes-container");
+    const fixCounter = document.getElementById("fix-counter");
+    const savedFixes = JSON.parse(localStorage.getItem("bianchini_fixes_v1") || "{}");
+
+    function updateFixCounter() {
+      const done = Object.values(savedFixes).filter(Boolean).length;
+      fixCounter.textContent = `${done} de ${FIXES.length} concluídos`;
+    }
+
+    FIXES.forEach(f => {
+      const label = document.createElement("label");
+      label.className = "check-item" + (savedFixes[f.id] ? " done" : "");
+      label.innerHTML = `
+        <input type="checkbox" ${savedFixes[f.id] ? "checked" : ""} />
+        <div>
+          <div class="check-title">${f.title}</div>
+          <div class="check-desc">${f.desc}</div>
+        </div>
+      `;
+      const input = label.querySelector("input");
+      input.addEventListener("change", () => {
+        savedFixes[f.id] = input.checked;
+        localStorage.setItem("bianchini_fixes_v1", JSON.stringify(savedFixes));
+        label.classList.toggle("done", input.checked);
+        updateFixCounter();
+      });
+      fixesContainer.appendChild(label);
+    });
+    updateFixCounter();
+
+    // Contas
+    const accContainer = document.getElementById("accounts-container");
+    ACCOUNTS.forEach(a => {
+      const div = document.createElement("div");
+      div.className = "acc-card";
+      div.innerHTML = `
+        <div style="display:grid;gap:10px">
+          <div class="acc-head">
+            <span class="acc-handle">${a.handle}</span>
+            <span class="pill-status">${a.status}</span>
+          </div>
+          <div class="acc-role">${a.role}</div>
+          <p class="check-desc">${a.desc}</p>
+          <div class="acc-bio-box">
+            <strong>${a.nameField}</strong>
+            <span>${a.bio}</span>
+          </div>
+        </div>
+        <button class="btn-action">Copiar Nome + Bio</button>
+      `;
+      div.querySelector("button").addEventListener("click", (e) => {
+        copyToClipboard(`Nome: ${a.nameField}\nBio: ${a.bio}`, e.currentTarget);
+      });
+      accContainer.appendChild(div);
+    });
+
+    // Métricas
+    const mBtns = document.getElementById("metric-buttons");
+    const mDetail = document.getElementById("metric-detail");
+    function setMetric(id) {
+      const m = METRICS.find(x => x.id === id);
+      Array.from(mBtns.children).forEach(b => b.classList.toggle("active", b.dataset.id === id));
+      mDetail.innerHTML = `
+        <div class="mono" style="font-size:12px;color:var(--gold);margin-bottom:6px">FORMATO CAMPEÃO PARA: ${m.label.toUpperCase()}</div>
+        <div style="font-family:Outfit,sans-serif;font-size:20px;font-weight:700;margin-bottom:8px">${m.format}</div>
+        <p class="check-desc" style="margin-bottom:12px">${m.why}</p>
+        <div style="padding-top:10px;border-top:1px solid var(--border);font-size:13px">
+          <strong>Melhor exemplo pronto no catálogo:</strong> <span style="color:var(--muted)">${m.ex}</span>
+        </div>
+      `;
+    }
+    METRICS.forEach(m => {
+      const b = document.createElement("button");
+      b.className = "metric-btn";
+      b.dataset.id = m.id;
+      b.textContent = m.label;
+      b.addEventListener("click", () => setMetric(m.id));
+      mBtns.appendChild(b);
+    });
+    setMetric("views");
+
+    // 30 Ideias
+    const ideasContainer = document.getElementById("ideas-container");
+    const ideasCount = document.getElementById("ideas-count");
+    const fOwner = document.getElementById("f-owner");
+    const fGoal = document.getElementById("f-goal");
+    const fSearch = document.getElementById("f-search");
+
+    function renderIdeas() {
+      const owner = fOwner.value;
+      const goal = fGoal.value;
+      const q = fSearch.value.trim().toLowerCase();
+
+      const list = IDEAS.filter(item => {
+        if (owner !== "ALL" && !item.owner.includes(owner)) return false;
+        if (goal !== "ALL" && item.goal !== goal) return false;
+        if (q) {
+          const hay = `${item.title} ${item.hook} ${item.how} ${item.cta} ${item.format}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      ideasCount.textContent = `${list.length} ideia${list.length === 1 ? "" : "s"}`;
+      ideasContainer.innerHTML = "";
+
+      list.forEach(item => {
+        const card = document.createElement("div");
+        card.className = "idea-card";
+        card.innerHTML = `
+          <div>
+            <div class="idea-meta">
+              <span class="idea-owner">#${String(item.n).padStart(2, "0")} · ${item.owner.join(" + ")}</span>
+              <span class="idea-fmt">${item.format}</span>
+            </div>
+            <div class="idea-title">${item.title}</div>
+            <div class="idea-hook-box">
+              <div class="idea-hook-lbl">Fala dos primeiros 3 segundos:</div>
+              <div class="idea-hook-txt">"${item.hook}"</div>
+              <div class="idea-screen">TELA: ${item.screen}</div>
+            </div>
+            <p class="idea-how">${item.how}</p>
+          </div>
+          <div class="idea-foot">
+            <span class="cta-chip">Direct: ${item.cta}</span>
+            <button class="btn-action">Copiar roteiro pro WhatsApp</button>
+          </div>
+        `;
+        card.querySelector("button").addEventListener("click", (e) => {
+          const txt = `*IDEIA #${String(item.n).padStart(2, "0")} — ${item.title}*\n• Contas: ${item.owner.join(" + ")} (${item.format})\n• Abertura (3s): "${item.hook}"\n• Texto na tela: ${item.screen}\n• Como gravar: ${item.how}\n• Chamada final: Comenta ${item.cta}`;
+          copyToClipboard(txt, e.currentTarget);
+        });
+        ideasContainer.appendChild(card);
+      });
+    }
+
+    fOwner.addEventListener("change", renderIdeas);
+    fGoal.addEventListener("change", renderIdeas);
+    fSearch.addEventListener("input", renderIdeas);
+    renderIdeas();
+
+    // Navegação por abas
+    const tabBtns = document.querySelectorAll(".tab-btn");
+    const panels = document.querySelectorAll(".panel");
+    tabBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.tab;
+        tabBtns.forEach(b => b.classList.toggle("active", b.dataset.tab === target));
+        panels.forEach(p => p.classList.toggle("active", p.id === `tab-${target}`));
+      });
+    });
+  </script>
+</body>
+</html>

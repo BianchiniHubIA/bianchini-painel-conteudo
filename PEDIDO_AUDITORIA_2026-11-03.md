@@ -7,7 +7,9 @@
 - Script `scripts/sync_socialblade_live.py` + workflow `.github/workflows/sync-analytics-live.yml` para atualizar `data/analytics-live-5d9c3a7e.json` a cada 4 horas.
 
 ## Arquivos e Commits
-- Commit principal: `6a44a95` (`feat(sites): publish unlisted content-os gittrend hub and realtime 5-account analytics`)
+- Commits publicados em `main`:
+  - `6a44a95` (`feat(sites): publish unlisted content-os gittrend hub and realtime 5-account analytics`)
+  - `10d51aa` (`fix(ui): restore Vue mustache delimiters, unwrap IDB proxy, and add inline favicon`)
 
 ## Como testar
 1. Acessar `https://bianchinihubia.github.io/bianchini-painel-conteudo/central-conteudo-gittrend-8b4e2f9a.html` e editar uma etapa de pauta; recarregar a pagina e confirmar persistencia.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-04T03:48:13+00:00",
+  "updatedAt": "2026-11-04T11:43:48+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,10 +10,10 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29079,
+    "totalFollowers": 29073,
     "totalMediaCount": 434,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 2.77
+    "meanEngagementRate": 2.8
   },
   "accounts": [
     {
@@ -88,13 +88,13 @@
       "targetAudience": "Empresários R$ 5M-100M/ano + Alunos do Método CRIAR",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 21507,
-      "followersDelta": 7,
+      "followers": 21500,
+      "followersDelta": 0,
       "following": 1356,
       "mediaCount": 255,
-      "engagementRate": 1.18,
-      "engagementRateDelta": 0.32,
-      "averageLikes": 145.0,
+      "engagementRate": 1.19,
+      "engagementRateDelta": 0.33,
+      "averageLikes": 147.0,
       "averageComments": 108.0,
       "healthScore": 83,
       "officialInsights30d": {
@@ -270,11 +270,11 @@
       "followersDelta": 3,
       "following": 221,
       "mediaCount": 51,
-      "engagementRate": 0.57,
-      "engagementRateDelta": -0.05,
-      "averageLikes": 9.0,
+      "engagementRate": 0.69,
+      "engagementRateDelta": 0.07,
+      "averageLikes": 11.0,
       "averageComments": 0.0,
-      "healthScore": 60,
+      "healthScore": 61,
       "officialInsights30d": {
         "source": "Auditoria Autorizada No Gustavo (@gustavocalheiros.ia - Apify + Social Blade Live em 03/11/2026; igbot OAuth conectado em 02/11)",
         "views30d": 14800,
@@ -551,9 +551,9 @@
       "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe",
       "website": "https://chat.whatsapp.com/Di3V0wN8Km73ahpn5J9rfU?mode=ems_copy_t",
       "fetchStatus": "live_socialblade",
-      "followers": 5267,
-      "followersDelta": -5,
-      "following": 1967,
+      "followers": 5268,
+      "followersDelta": -4,
+      "following": 1968,
       "mediaCount": 45,
       "engagementRate": 0.29,
       "engagementRateDelta": -0.21,

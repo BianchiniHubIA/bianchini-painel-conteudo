@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-05T00:36:56+00:00",
+  "updatedAt": "2026-11-05T11:42:28+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,10 +10,10 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29102,
+    "totalFollowers": 29101,
     "totalMediaCount": 434,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 2.73
+    "meanEngagementRate": 2.69
   },
   "accounts": [
     {
@@ -26,12 +26,12 @@
       "targetAudience": "CTOs, Sócios Operacionais (Contratos Hub) + Devs/Builders (Mentoria)",
       "website": "https://bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 59,
-      "followersDelta": 2,
+      "followers": 60,
+      "followersDelta": 3,
       "following": 122,
       "mediaCount": 5,
-      "engagementRate": 10.17,
-      "engagementRateDelta": -0.36,
+      "engagementRate": 10.0,
+      "engagementRateDelta": -0.53,
       "averageLikes": 6.0,
       "averageComments": 0.0,
       "healthScore": 75,
@@ -268,7 +268,7 @@
       "fetchStatus": "live_socialblade",
       "followers": 1583,
       "followersDelta": 3,
-      "following": 221,
+      "following": 220,
       "mediaCount": 51,
       "engagementRate": 0.69,
       "engagementRateDelta": 0.07,
@@ -551,9 +551,9 @@
       "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe",
       "website": "https://chat.whatsapp.com/Di3V0wN8Km73ahpn5J9rfU?mode=ems_copy_t",
       "fetchStatus": "live_socialblade",
-      "followers": 5271,
-      "followersDelta": -1,
-      "following": 1971,
+      "followers": 5269,
+      "followersDelta": -3,
+      "following": 1974,
       "mediaCount": 45,
       "engagementRate": 0.29,
       "engagementRateDelta": -0.21,

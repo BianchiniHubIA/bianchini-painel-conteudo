@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-06T18:39:36+00:00",
+  "updatedAt": "2026-11-06T23:52:01+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,7 +10,7 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29095,
+    "totalFollowers": 29093,
     "totalMediaCount": 433,
     "estimatedViews30d": 71836,
     "meanEngagementRate": 2.66
@@ -409,8 +409,8 @@
       "targetAudience": "CEOs, Fundadores, Diretores Executivos e Conselhos de Empresas",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 665,
-      "followersDelta": 0,
+      "followers": 663,
+      "followersDelta": -2,
       "following": 210,
       "mediaCount": 78,
       "engagementRate": 1.28,

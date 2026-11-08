@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-08T10:51:50+00:00",
+  "updatedAt": "2026-11-08T17:22:06+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,10 +10,10 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29091,
-    "totalMediaCount": 435,
+    "totalFollowers": 29090,
+    "totalMediaCount": 437,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 2.54
+    "meanEngagementRate": 2.56
   },
   "accounts": [
     {
@@ -28,8 +28,8 @@
       "fetchStatus": "live_socialblade",
       "followers": 61,
       "followersDelta": 4,
-      "following": 29,
-      "mediaCount": 5,
+      "following": 37,
+      "mediaCount": 6,
       "engagementRate": 9.84,
       "engagementRateDelta": -0.69,
       "averageLikes": 6.0,
@@ -551,14 +551,14 @@
       "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe",
       "website": "https://chat.whatsapp.com/Di3V0wN8Km73ahpn5J9rfU?mode=ems_copy_t",
       "fetchStatus": "live_socialblade",
-      "followers": 5266,
-      "followersDelta": -6,
-      "following": 1974,
-      "mediaCount": 44,
-      "engagementRate": 0.27,
-      "engagementRateDelta": -0.23,
-      "averageLikes": 13.0,
-      "averageComments": 1.0,
+      "followers": 5265,
+      "followersDelta": -7,
+      "following": 1976,
+      "mediaCount": 45,
+      "engagementRate": 0.33,
+      "engagementRateDelta": -0.17,
+      "averageLikes": 15.81,
+      "averageComments": 1.31,
       "healthScore": 61,
       "officialInsights30d": {
         "source": "Auditoria Autorizada No Victor (@isabianchini.ia - Apify Live + Social Blade em 03/11/2026; extra_pending no /igbot/health)",

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-08T03:12:37+00:00",
+  "updatedAt": "2026-11-08T10:51:50+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -11,9 +11,9 @@
   "ecosystemTotals": {
     "accountsCount": 5,
     "totalFollowers": 29091,
-    "totalMediaCount": 433,
+    "totalMediaCount": 435,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 2.66
+    "meanEngagementRate": 2.54
   },
   "accounts": [
     {
@@ -91,12 +91,12 @@
       "followers": 21519,
       "followersDelta": 19,
       "following": 1359,
-      "mediaCount": 255,
-      "engagementRate": 1.21,
-      "engagementRateDelta": 0.35,
-      "averageLikes": 152.0,
-      "averageComments": 109.0,
-      "healthScore": 83,
+      "mediaCount": 256,
+      "engagementRate": 0.63,
+      "engagementRateDelta": -0.23,
+      "averageLikes": 79.5,
+      "averageComments": 55.5,
+      "healthScore": 78,
       "officialInsights30d": {
         "source": "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias em 03/11/2026) + Apify Grade",
         "views30d": 25530,
@@ -269,7 +269,7 @@
       "followers": 1581,
       "followersDelta": 1,
       "following": 222,
-      "mediaCount": 51,
+      "mediaCount": 52,
       "engagementRate": 0.7,
       "engagementRateDelta": 0.08,
       "averageLikes": 11.0,

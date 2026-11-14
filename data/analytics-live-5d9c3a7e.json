@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-14T00:32:31+00:00",
+  "updatedAt": "2026-11-14T11:03:50+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,10 +10,10 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29084,
+    "totalFollowers": 29087,
     "totalMediaCount": 439,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 2.1
+    "meanEngagementRate": 2.11
   },
   "accounts": [
     {
@@ -94,7 +94,7 @@
       "mediaCount": 256,
       "engagementRate": 8.51,
       "engagementRateDelta": 7.65,
-      "averageLikes": 1510.67,
+      "averageLikes": 1510.33,
       "averageComments": 320.0,
       "healthScore": 96,
       "officialInsights30d": {
@@ -270,9 +270,9 @@
       "followersDelta": -1,
       "following": 222,
       "mediaCount": 53,
-      "engagementRate": 0.47,
-      "engagementRateDelta": -0.15,
-      "averageLikes": 7.5,
+      "engagementRate": 0.51,
+      "engagementRateDelta": -0.11,
+      "averageLikes": 8.0,
       "averageComments": 0.0,
       "healthScore": 59,
       "officialInsights30d": {
@@ -551,14 +551,14 @@
       "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe",
       "website": "https://chat.whatsapp.com/Di3V0wN8Km73ahpn5J9rfU?mode=ems_copy_t",
       "fetchStatus": "live_socialblade",
-      "followers": 5261,
-      "followersDelta": -11,
-      "following": 1984,
+      "followers": 5264,
+      "followersDelta": -8,
+      "following": 1986,
       "mediaCount": 49,
       "engagementRate": 0.31,
       "engagementRateDelta": -0.19,
-      "averageLikes": 15.19,
-      "averageComments": 1.12,
+      "averageLikes": 15.31,
+      "averageComments": 1.19,
       "healthScore": 61,
       "officialInsights30d": {
         "source": "Auditoria Autorizada No Victor (@isabianchini.ia - Apify Live + Social Blade em 03/11/2026; extra_pending no /igbot/health)",

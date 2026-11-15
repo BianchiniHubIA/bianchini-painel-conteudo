@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-15T03:41:22+00:00",
+  "updatedAt": "2026-11-15T11:37:29+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,10 +10,10 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29083,
-    "totalMediaCount": 439,
+    "totalFollowers": 29086,
+    "totalMediaCount": 440,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 0.65
+    "meanEngagementRate": 0.67
   },
   "accounts": [
     {
@@ -26,10 +26,10 @@
       "targetAudience": "CTOs, Sócios Operacionais (Contratos Hub) + Devs/Builders (Mentoria)",
       "website": "https://bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 63,
-      "followersDelta": 6,
+      "followers": 65,
+      "followersDelta": 8,
       "following": 38,
-      "mediaCount": 3,
+      "mediaCount": 4,
       "engagementRate": 0.0,
       "engagementRateDelta": -10.53,
       "averageLikes": 0.0,
@@ -266,9 +266,9 @@
       "targetAudience": "Marcas High-Ticket, Incorporadoras e Clínicas + Designers/Criadores",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 1579,
-      "followersDelta": -1,
-      "following": 222,
+      "followers": 1580,
+      "followersDelta": 0,
+      "following": 221,
       "mediaCount": 53,
       "engagementRate": 0.51,
       "engagementRateDelta": -0.11,
@@ -413,10 +413,10 @@
       "followersDelta": 1,
       "following": 209,
       "mediaCount": 78,
-      "engagementRate": 1.2,
-      "engagementRateDelta": -0.08,
-      "averageLikes": 4.0,
-      "averageComments": 4.0,
+      "engagementRate": 1.28,
+      "engagementRateDelta": 0.0,
+      "averageLikes": 5.5,
+      "averageComments": 3.0,
       "healthScore": 48,
       "officialInsights30d": {
         "source": "Auditoria Autorizada No Victor (@bianchini.hub - Apify Live + Social Blade em 03/11/2026; 78 posts)",
@@ -553,11 +553,11 @@
       "fetchStatus": "live_socialblade",
       "followers": 5264,
       "followersDelta": -8,
-      "following": 1986,
+      "following": 1989,
       "mediaCount": 49,
       "engagementRate": 0.31,
       "engagementRateDelta": -0.19,
-      "averageLikes": 15.31,
+      "averageLikes": 15.38,
       "averageComments": 1.19,
       "healthScore": 61,
       "officialInsights30d": {

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-18T01:56:27+00:00",
+  "updatedAt": "2026-11-18T12:26:57+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,10 +10,10 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29077,
-    "totalMediaCount": 451,
+    "totalFollowers": 29078,
+    "totalMediaCount": 452,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 0.67
+    "meanEngagementRate": 0.66
   },
   "accounts": [
     {
@@ -88,9 +88,9 @@
       "targetAudience": "Empresários R$ 5M-100M/ano + Alunos do Método CRIAR",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 21503,
-      "followersDelta": 3,
-      "following": 1359,
+      "followers": 21500,
+      "followersDelta": 0,
+      "following": 1358,
       "mediaCount": 253,
       "engagementRate": 1.24,
       "engagementRateDelta": 0.38,
@@ -266,8 +266,8 @@
       "targetAudience": "Marcas High-Ticket, Incorporadoras e Clínicas + Designers/Criadores",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 1580,
-      "followersDelta": 0,
+      "followers": 1577,
+      "followersDelta": -3,
       "following": 222,
       "mediaCount": 54,
       "engagementRate": 0.51,
@@ -551,14 +551,14 @@
       "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe",
       "website": "https://chat.whatsapp.com/Di3V0wN8Km73ahpn5J9rfU?mode=ems_copy_t",
       "fetchStatus": "live_socialblade",
-      "followers": 5265,
-      "followersDelta": -7,
-      "following": 1996,
-      "mediaCount": 61,
-      "engagementRate": 0.31,
-      "engagementRateDelta": -0.19,
-      "averageLikes": 15.12,
-      "averageComments": 1.19,
+      "followers": 5272,
+      "followersDelta": 0,
+      "following": 2005,
+      "mediaCount": 62,
+      "engagementRate": 0.28,
+      "engagementRateDelta": -0.22,
+      "averageLikes": 13.5,
+      "averageComments": 1.25,
       "healthScore": 61,
       "officialInsights30d": {
         "source": "Auditoria Autorizada No Victor (@isabianchini.ia - Apify Live + Social Blade em 03/11/2026; extra_pending no /igbot/health)",

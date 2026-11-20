@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-20T01:30:00+00:00",
+  "updatedAt": "2026-11-20T12:18:51+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,10 +10,10 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29080,
+    "totalFollowers": 29069,
     "totalMediaCount": 452,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 0.54
+    "meanEngagementRate": 0.66
   },
   "accounts": [
     {
@@ -88,15 +88,15 @@
       "targetAudience": "Empresários R$ 5M-100M/ano + Alunos do Método CRIAR",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 21502,
-      "followersDelta": 2,
-      "following": 1355,
-      "mediaCount": 254,
-      "engagementRate": 0.62,
-      "engagementRateDelta": -0.24,
-      "averageLikes": 78.5,
-      "averageComments": 55.0,
-      "healthScore": 78,
+      "followers": 21492,
+      "followersDelta": -8,
+      "following": 1358,
+      "mediaCount": 253,
+      "engagementRate": 1.24,
+      "engagementRateDelta": 0.38,
+      "averageLikes": 157.0,
+      "averageComments": 109.0,
+      "healthScore": 84,
       "officialInsights30d": {
         "source": "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias em 03/11/2026) + Apify Grade",
         "views30d": 25530,
@@ -266,8 +266,8 @@
       "targetAudience": "Marcas High-Ticket, Incorporadoras e Clínicas + Designers/Criadores",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 1576,
-      "followersDelta": -4,
+      "followers": 1575,
+      "followersDelta": -5,
       "following": 222,
       "mediaCount": 54,
       "engagementRate": 0.51,
@@ -553,11 +553,11 @@
       "fetchStatus": "live_socialblade",
       "followers": 5273,
       "followersDelta": 1,
-      "following": 2014,
-      "mediaCount": 61,
+      "following": 2018,
+      "mediaCount": 62,
       "engagementRate": 0.28,
       "engagementRateDelta": -0.22,
-      "averageLikes": 13.44,
+      "averageLikes": 13.5,
       "averageComments": 1.19,
       "healthScore": 61,
       "officialInsights30d": {

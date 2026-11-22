@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-21T21:18:06+00:00",
+  "updatedAt": "2026-11-22T03:56:15+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,7 +10,7 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29066,
+    "totalFollowers": 29067,
     "totalMediaCount": 454,
     "estimatedViews30d": 71836,
     "meanEngagementRate": 0.66
@@ -88,9 +88,9 @@
       "targetAudience": "Empresários R$ 5M-100M/ano + Alunos do Método CRIAR",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 21492,
-      "followersDelta": -8,
-      "following": 1358,
+      "followers": 21493,
+      "followersDelta": -7,
+      "following": 1359,
       "mediaCount": 253,
       "engagementRate": 1.24,
       "engagementRateDelta": 0.38,

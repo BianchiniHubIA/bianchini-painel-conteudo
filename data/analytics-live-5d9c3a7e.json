@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-23T04:38:01+00:00",
+  "updatedAt": "2026-11-23T19:38:14+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -11,9 +11,9 @@
   "ecosystemTotals": {
     "accountsCount": 5,
     "totalFollowers": 29059,
-    "totalMediaCount": 454,
+    "totalMediaCount": 443,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 0.66
+    "meanEngagementRate": 0.62
   },
   "accounts": [
     {
@@ -545,21 +545,21 @@
       "key": "isa",
       "handle": "isabianchini.ia",
       "atHandle": "@isabianchini.ia",
-      "displayName": "Isa Bianchini",
+      "displayName": "Isa Bianchini | IA & Negócios",
       "ownerName": "Isa Bianchini",
       "role": "Diretora Executiva & Co-fundadora (Gestão Executiva, Processos & IA)",
       "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe",
-      "website": "https://chat.whatsapp.com/Di3V0wN8Km73ahpn5J9rfU?mode=ems_copy_t",
+      "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
       "followers": 5274,
       "followersDelta": 2,
-      "following": 2021,
-      "mediaCount": 65,
-      "engagementRate": 0.29,
-      "engagementRateDelta": -0.21,
-      "averageLikes": 14.38,
-      "averageComments": 1.06,
-      "healthScore": 61,
+      "following": 2022,
+      "mediaCount": 54,
+      "engagementRate": 0.08,
+      "engagementRateDelta": -0.42,
+      "averageLikes": 3.88,
+      "averageComments": 0.19,
+      "healthScore": 59,
       "officialInsights30d": {
         "source": "Auditoria Autorizada No Victor (@isabianchini.ia - Apify Live + Social Blade em 03/11/2026; extra_pending no /igbot/health)",
         "views30d": 26400,

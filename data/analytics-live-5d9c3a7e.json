@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-24T04:29:45+00:00",
+  "updatedAt": "2026-11-24T19:11:38+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,17 +10,17 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29059,
-    "totalMediaCount": 443,
+    "totalFollowers": 29053,
+    "totalMediaCount": 444,
     "estimatedViews30d": 71836,
-    "meanEngagementRate": 0.62
+    "meanEngagementRate": 0.63
   },
   "accounts": [
     {
       "key": "garcia",
       "handle": "lorenzogarcia.ia",
       "atHandle": "@lorenzogarcia.ia",
-      "displayName": "Lorenzo Garcia | Soluções digitais com IA",
+      "displayName": "Lorenzo Garcia | Engenharia de Software e IA",
       "ownerName": "Lorenzo Garcia",
       "role": "Sócio Engenheiro Construtor (Sistemas, Agentes, MCPs & Segurança)",
       "targetAudience": "CTOs, Sócios Operacionais (Contratos Hub) + Devs/Builders (Mentoria)",
@@ -551,13 +551,13 @@
       "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 5274,
-      "followersDelta": 2,
-      "following": 2022,
-      "mediaCount": 54,
-      "engagementRate": 0.08,
-      "engagementRateDelta": -0.42,
-      "averageLikes": 3.88,
+      "followers": 5268,
+      "followersDelta": -4,
+      "following": 2023,
+      "mediaCount": 55,
+      "engagementRate": 0.11,
+      "engagementRateDelta": -0.39,
+      "averageLikes": 5.69,
       "averageComments": 0.19,
       "healthScore": 59,
       "officialInsights30d": {

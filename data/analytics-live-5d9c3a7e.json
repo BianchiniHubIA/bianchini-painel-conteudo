@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-28T05:26:08+00:00",
+  "updatedAt": "2026-11-28T16:28:38+00:00",
   "sources": [
     "Instagram Graph API v21.0 Oficial (@victorbianchini.ia - 30 dias + Insights por Mídia: views, reach, saved, shares)",
     "Instagram Insights Oficial Logado (@lorenzogarcia.ia - 30 dias)",
@@ -10,8 +10,8 @@
   ],
   "ecosystemTotals": {
     "accountsCount": 5,
-    "totalFollowers": 29038,
-    "totalMediaCount": 388,
+    "totalFollowers": 29039,
+    "totalMediaCount": 389,
     "estimatedViews30d": 71836,
     "meanEngagementRate": 0.64
   },
@@ -551,13 +551,13 @@
       "targetAudience": "Diretores, Gestoras, Empresários Sobrecarregados e Líderes de Equipe",
       "website": "http://www.bianchinihub.com",
       "fetchStatus": "live_socialblade",
-      "followers": 5266,
-      "followersDelta": -6,
-      "following": 2031,
-      "mediaCount": 58,
+      "followers": 5267,
+      "followersDelta": -5,
+      "following": 2038,
+      "mediaCount": 59,
       "engagementRate": 0.15,
       "engagementRateDelta": -0.35,
-      "averageLikes": 7.75,
+      "averageLikes": 7.94,
       "averageComments": 0.19,
       "healthScore": 59,
       "officialInsights30d": {
